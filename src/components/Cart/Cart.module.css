@@ -1,248 +1,175 @@
-/* Container für den Warenkorb */
+:root {
+  --primary-color: #007acc; /* Albastru deschis pentru elementele principale */
+  --secondary-color: #f2a900; /* Portocaliu pentru elementele de accent */
+  --accent-color: #e0e0e0; /* Culoare de fundal mai fină pentru carduri */
+  --remove-button-bg-color: #dc3545; /* Roșu pentru butonul de eliminare */
+  --remove-button-hover-bg-color: #c82333; /* Roșu mai închis pentru hover */
+  --success-color: #28a745; /* Verde pentru mesaje de succes */
+  --text-color: #333; /* Culoare de text standard */
+  --background-color: #f9f9f9; /* Fundal deschis pentru întreaga pagină */
+  --white-color: #fff; /* Alb pentru fundaluri */
+  --button-bg-color: #007acc; /* Albastru pentru butoanele de acțiune */
+  --button-hover-bg-color: #005fa3; /* Albastru mai închis la hover */
+  --border-radius: 12px; /* Colțuri rotunjite pentru un aspect modern */
+  --shadow-color: rgba(0, 0, 0, 0.1); /* Umbra ușoară pentru adâncire */
+  --font-family: "Arial", sans-serif; /* Font standard */
+  --font-size-base: 16px; /* Dimensiune de bază a fontului */
+  --font-size-lg: 18px; /* Dimensiune mare pentru titluri */
+  --font-size-sm: 14px; /* Dimensiune mică pentru texte secundare */
+  --transition-speed: 0.3s; /* Viteză de tranziție pentru efecte */
+}
+
+/* Containerul general al coșului */
 .cartContainer {
+  width: 100%;
   max-width: 1200px;
   margin: 120px auto;
   padding: 20px;
-  background-color: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  background-color: var(--white-color);
+  border-radius: var(--border-radius);
+  box-shadow: 0 4px 10px var(--shadow-color);
+  font-family: var(--font-family);
 }
 
-/* Titel des Warenkorbs */
-.cartContainer h2 {
+/* Titlul principal al coșului */
+.cartTitle {
+  font-size: var(--font-size-lg);
+  color: var(--primary-color);
   text-align: center;
-  font-size: 2rem;
-  margin-bottom: 30px;
-  color: #2c3e50;
-  font-weight: bold;
-}
-
-/* Liste der Artikel im Warenkorb */
-.cartList {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 30px 0;
-}
-
-/* Einzelner Artikel im Warenkorb */
-.cartItem {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 15px;
-  border-bottom: 1px solid #e0e0e0;
-  transition: background-color 0.3s ease;
-}
-
-.cartItem:hover {
-  background-color: #f9f9f9;
-}
-
-/* Bild des Produkts */
-.cartItem img {
-  width: 100%;
-  max-width: 150px;
-  height: auto;
-  object-fit: cover;
-  border-radius: 8px;
-  margin-bottom: 15px;
-}
-
-/* Details des Produkts */
-.cartItemDetails {
-  text-align: center;
-}
-
-.cartItemDetails h3 {
-  font-size: 1.2rem;
-  color: #2c3e50;
-  margin: 0 0 10px 0;
-}
-
-.cartItemDetails p {
-  margin: 5px 0;
-  color: #7f8c8d;
-  font-size: 1rem;
-}
-
-/* Entfernen-Button */
-.removeButton {
-  padding: 8px 12px;
-  background-color: #e74c3c;
-  color: #ffffff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  margin-top: 10px;
-}
-
-.removeButton:hover {
-  background-color: #c0392b;
-}
-
-/* Gesamtpreis */
-.totalPrice {
-  text-align: right;
-  font-size: 1.5rem;
-  color: #2c3e50;
   margin-bottom: 20px;
 }
 
-/* Zur Kasse Button */
-.checkoutButton {
-  display: inline-block;
-  padding: 10px 20px;
-  background-color: #27ae60;
-  color: #ffffff;
+/* Listă cu produsele din coș */
+.cartList {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+/* Stilizarea unui produs din coș */
+.cartItem {
+  display: flex;
+  background-color: var(--white-color);
+  border-radius: var(--border-radius);
+  box-shadow: 0 4px 8px var(--shadow-color);
+  overflow: hidden;
+  transition: transform var(--transition-speed),
+    box-shadow var(--transition-speed);
+}
+
+.cartItem:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px var(--shadow-color);
+}
+
+/* Imaginea produsului */
+.cartItemImage {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-right: 15px;
+}
+
+/* Detaliile produsului */
+.cartItemDetails {
+  flex: 1;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.cartItemDetails h3 {
+  font-size: var(--font-size-lg);
+  color: var(--text-color);
+  margin: 0;
+}
+
+.cartItemPrice,
+.cartItemSize,
+.cartItemQuantity {
+  font-size: var(--font-size-sm);
+  color: var(--secondary-text);
+  margin: 5px 0;
+}
+
+/* Butonul de eliminare */
+.removeButton {
+  padding: 8px 16px;
+  background-color: var(--remove-button-bg-color);
+  color: var(--white-color);
   border: none;
-  border-radius: 5px;
-  text-decoration: none;
-  font-size: 1.1rem;
-  font-weight: 500;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  border-radius: var(--border-radius);
   cursor: pointer;
+  transition: background-color var(--transition-speed),
+    transform var(--transition-speed);
+  margin-top: 15px;
+}
+
+.removeButton:hover {
+  background-color: var(--remove-button-hover-bg-color);
+  transform: scale(1.05);
+}
+
+/* Sumarul coșului */
+.cartSummary {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.totalPrice {
+  font-size: var(--font-size-lg);
+  font-weight: bold;
+  color: var(--primary-color);
+  margin-bottom: 15px;
+}
+
+.checkoutButton {
+  padding: 12px 24px;
+  background-color: var(--button-bg-color);
+  color: var(--white-color);
+  border-radius: var(--border-radius);
+  text-decoration: none;
+  font-size: var(--font-size-lg);
+  transition: background-color var(--transition-speed),
+    transform var(--transition-speed);
 }
 
 .checkoutButton:hover {
-  background-color: #1e8449;
-  transform: translateY(-2px);
+  background-color: var(--button-hover-bg-color);
+  transform: scale(1.05);
 }
 
-.checkoutButton:active {
-  transform: translateY(0);
-}
-
-/* Nachricht für leeren Warenkorb */
+/* Mesajul când coșul este gol */
 .emptyCart {
+  font-size: var(--font-size-lg);
+  color: var(--text-color);
   text-align: center;
-  font-size: 1.5rem;
-  color: #95a5a6;
   margin-top: 50px;
+  font-weight: bold;
 }
 
-/* Loader */
-.loader {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 300px;
-}
-
-.spinner {
-  width: 60px;
-  height: 60px;
-  border: 6px solid #f3f3f3;
-  border-top-color: #3498db;
-  border-radius: 50%;
-  animation: spinner 0.6s linear infinite;
-}
-
-@keyframes spinner {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-/* Fehlermeldung */
-.error {
-  color: #e74c3c;
-  text-align: center;
-  font-size: 1.2rem;
-  margin: 50px 0;
-}
-
-/* Media Queries für responsives Design */
-
-/* Tablet (576px und höher) */
-@media (min-width: 576px) {
+/* Stiluri pentru produsele din coș în mod mobil */
+@media (max-width: 768px) {
   .cartItem {
-    flex-direction: row;
-    align-items: flex-start;
+    flex-direction: column;
+    align-items: center;
   }
 
-  .cartItem img {
-    margin-bottom: 0;
-    margin-right: 20px;
-    max-width: 120px;
+  .cartItemImage {
+    width: 80px;
+    height: 80px;
   }
 
   .cartItemDetails {
-    text-align: left;
-    flex: 1;
-  }
-
-  .removeButton {
-    margin-top: 0;
-    align-self: flex-start;
+    text-align: center;
   }
 
   .checkoutButton {
-    font-size: 1.2rem;
-    padding: 12px 24px;
-  }
-}
-
-/* Desktop (768px und höher) */
-@media (min-width: 768px) {
-  .cartList {
-    padding: 0 20px;
-  }
-
-  .cartItem img {
-    max-width: 140px;
-  }
-
-  .cartItemDetails h3 {
-    font-size: 1.3rem;
-  }
-
-  .cartItemDetails p {
-    font-size: 1.05rem;
-  }
-
-  .removeButton {
-    padding: 10px 14px;
-  }
-
-  .totalPrice {
-    font-size: 1.6rem;
-  }
-
-  .checkoutButton {
-    font-size: 1.25rem;
-    padding: 14px 28px;
-  }
-}
-
-/* Groß-Desktop (992px und höher) */
-@media (min-width: 992px) {
-  .cartContainer {
-    padding: 30px 60px;
-  }
-
-  .cartItem img {
-    max-width: 160px;
-  }
-
-  .cartItemDetails h3 {
-    font-size: 1.4rem;
-  }
-
-  .cartItemDetails p {
-    font-size: 1.1rem;
-  }
-
-  .removeButton {
-    padding: 12px 16px;
-  }
-
-  .totalPrice {
-    font-size: 1.75rem;
-  }
-
-  .checkoutButton {
-    font-size: 1.3rem;
-    padding: 16px 32px;
+    width: 100%;
+    text-align: center;
   }
 }

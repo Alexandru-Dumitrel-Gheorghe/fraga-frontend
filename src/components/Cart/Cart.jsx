@@ -17,19 +17,20 @@ const Cart = () => {
 
   return (
     <div className={styles.cartContainer}>
-      <h2>Warenkorb</h2>
-      <ul className={styles.cartList}>
+      <h2 className={styles.cartTitle}>Warenkorb</h2>
+      <div className={styles.cartList}>
         {cartItems.map((item) => (
-          <li key={item._id} className={styles.cartItem}>
+          <div key={item._id} className={styles.cartItem}>
             <img
-              src={item.image || "/images/default-product.jpg"} // Fallback-Bild
+              src={item.image || "/images/default-product.jpg"}
               alt={item.name}
-              loading="lazy"
+              className={styles.cartItemImage}
             />
             <div className={styles.cartItemDetails}>
               <h3>{item.name}</h3>
-              <p>Preis: {item.price.toFixed(2)} €</p>
-              <p>Menge: {item.quantity}</p>
+              <p className={styles.cartItemPrice}>€{item.price.toFixed(2)}</p>
+              <p className={styles.cartItemSize}>Größe: {item.size}</p>
+              <p className={styles.cartItemQuantity}>Menge: {item.quantity}</p>
               <button
                 className={styles.removeButton}
                 onClick={() => removeFromCart(item._id)}
@@ -37,15 +38,18 @@ const Cart = () => {
                 Entfernen
               </button>
             </div>
-          </li>
+          </div>
         ))}
-      </ul>
-      <h3 className={styles.totalPrice}>
-        Gesamtpreis: {totalPrice.toFixed(2)} €
-      </h3>
-      <Link to="/checkout" className={styles.checkoutButton}>
-        Zur Kasse gehen
-      </Link>
+      </div>
+
+      <div className={styles.cartSummary}>
+        <h3 className={styles.totalPrice}>
+          Gesamtpreis: €{totalPrice.toFixed(2)}
+        </h3>
+        <Link to="/checkout" className={styles.checkoutButton}>
+          Zur Kasse gehen
+        </Link>
+      </div>
     </div>
   );
 };

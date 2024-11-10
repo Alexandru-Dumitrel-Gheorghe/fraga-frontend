@@ -3,7 +3,6 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar";
-import Footer from "./components/Footer/Footer";
 import HomePage from "./pages/HomePage";
 import ProductsPage from "./pages/ProductsPage";
 import ProductDetails from "./components/ProductDetails/ProductDetails";
@@ -44,7 +43,6 @@ const App = () => {
           />
         </Routes>
       </main>
-      <Footer />
     </div>
   );
 };

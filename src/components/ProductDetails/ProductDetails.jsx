@@ -1,11 +1,11 @@
 // src/components/ProductDetails/ProductDetails.jsx
 
 import React, { useEffect, useState, useContext } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { CartContext } from "../../context/CartContext";
+import Modal from "../Modal/Modal"; // Importă Modal
 import styles from "./ProductDetails.module.css";
-import Breadcrumb from "../Breadcrumb/Breadcrumb";
 import ProductCard from "../ProductCard/ProductCard";
 
 const ProductDetails = () => {
@@ -13,8 +13,12 @@ const ProductDetails = () => {
   const [product, setProduct] = useState(null);
   const { addToCart } = useContext(CartContext);
   const [quantity, setQuantity] = useState(1);
+  const [size, setSize] = useState("M");
   const [loading, setLoading] = useState(true);
   const [relatedProducts, setRelatedProducts] = useState([]);
+  const [showModal, setShowModal] = useState(false); // Stare pentru a arăta modalul
+  const [modalMessage, setModalMessage] = useState(""); // Mesajul modalului
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -40,12 +44,19 @@ const ProductDetails = () => {
   if (!product) return <p className={styles.error}>Produkt nicht gefunden.</p>;
 
   const handleAddToCart = () => {
-    addToCart({ ...product, quantity });
+    addToCart({ ...product, quantity, size });
+
+    // Setează mesajul și arată modalul
+    setModalMessage("Produkt erfolgreich zum Warenkorb hinzugefügt!");
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false); // Închide modalul
   };
 
   return (
     <div className={styles.productDetails}>
-      <Breadcrumb />
       <div className={styles.imageContainer}>
         <img
           src={product.image}
@@ -57,6 +68,29 @@ const ProductDetails = () => {
         <h2 className={styles.productName}>{product.name}</h2>
         <p className={styles.productDescription}>{product.description}</p>
         <p className={styles.productPrice}>€{product.price.toFixed(2)}</p>
+        <div className={styles.stock}>
+          <span>
+            Verfügbarkeit: {product.stock > 0 ? "Auf Lager" : "Nicht auf Lager"}
+          </span>
+        </div>
+
+        <div className={styles.sizeContainer}>
+          <label htmlFor="size" className={styles.sizeLabel}>
+            Größe:
+          </label>
+          <select
+            id="size"
+            name="size"
+            value={size}
+            onChange={(e) => setSize(e.target.value)}
+            className={styles.sizeSelect}
+          >
+            <option value="S">S</option>
+            <option value="M">M</option>
+            <option value="L">L</option>
+            <option value="XL">XL</option>
+          </select>
+        </div>
 
         <div className={styles.quantityContainer}>
           <label htmlFor="quantity" className={styles.quantityLabel}>
@@ -76,7 +110,17 @@ const ProductDetails = () => {
         <button onClick={handleAddToCart} className={styles.addToCartButton}>
           In den Warenkorb
         </button>
+
+        <div className={styles.productRating}>
+          <span>⭐⭐⭐⭐⭐</span>
+          <span className={styles.reviewCount}>
+            ({product.reviews} Bewertungen)
+          </span>
+        </div>
       </div>
+
+      {/* Modal de adăugare în coș */}
+      {showModal && <Modal message={modalMessage} onClose={handleCloseModal} />}
 
       {/* Related Products */}
       {relatedProducts.length > 0 && (
