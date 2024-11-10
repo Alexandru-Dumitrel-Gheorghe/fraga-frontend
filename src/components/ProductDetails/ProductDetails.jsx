@@ -1,7 +1,5 @@
-// src/components/ProductDetails/ProductDetails.jsx
-
 import React, { useEffect, useState, useContext } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 import { CartContext } from "../../context/CartContext";
 import Modal from "../Modal/Modal"; // Importă Modal
@@ -18,7 +16,6 @@ const ProductDetails = () => {
   const [relatedProducts, setRelatedProducts] = useState([]);
   const [showModal, setShowModal] = useState(false); // Stare pentru a arăta modalul
   const [modalMessage, setModalMessage] = useState(""); // Mesajul modalului
-  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchProduct = async () => {

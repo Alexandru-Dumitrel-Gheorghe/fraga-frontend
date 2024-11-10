@@ -1,5 +1,3 @@
-// src/components/Modal/Modal.jsx
-
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./Modal.module.css"; // Importăm fișierul CSS pentru stiluri
@@ -7,6 +5,7 @@ import styles from "./Modal.module.css"; // Importăm fișierul CSS pentru stilu
 const Modal = ({ message, onClose }) => {
   const navigate = useNavigate();
 
+  // Funcții pentru redirecționare
   const handleNavigateToCart = () => {
     navigate("/cart"); // Navighează la coșul de cumpărături
     onClose(); // Închide modalul
