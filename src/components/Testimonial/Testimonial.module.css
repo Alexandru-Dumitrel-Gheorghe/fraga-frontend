@@ -1,0 +1,22 @@
+/* src/components/Testimonial/Testimonial.module.css */
+
+.testimonial {
+  background-color: #f9fafb; /* Hellgrau */
+  padding: 1.5rem;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.quote {
+  font-size: 1.1rem;
+  font-style: italic;
+  color: #374151;
+  margin-bottom: 1rem;
+}
+
+.author {
+  font-size: 1rem;
+  color: #1e3a8a;
+  font-weight: 500;
+}

@@ -1,0 +1,132 @@
+/* FeaturedProducts.module.css */
+
+/* CSS-Variablen */
+:root {
+  --primary-color: #27ae60;
+  --secondary-color: #2c3e50;
+  --accent-color: #e74c3c;
+  --font-size-title: 2.5rem;
+  --font-size-badge: 0.9rem;
+}
+
+/* Container für die Featured Products Sektion */
+.featured {
+  padding: 40px 20px;
+  background-color: #f5f5f5;
+}
+
+/* Titel der Sektion */
+.title {
+  text-align: center;
+  font-size: var(--font-size-title);
+  margin-bottom: 40px;
+  color: var(--secondary-color);
+  font-weight: bold;
+}
+
+/* Grid-Layout für die Produktkarten */
+.productGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  animation: fadeIn 1s ease-in-out;
+}
+
+/* Container für jede Produktkarte mit Animation */
+.productCardContainer {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  background-image: url("https://images.unsplash.com/photo-1573581042946-359905ea3622?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"); /* Hintergrundbild */
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: slideUp 0.5s forwards;
+}
+
+.productCardContainer:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* Badge für Bestseller */
+.badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: var(--accent-color);
+  color: #ffffff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: var(--font-size-badge);
+  font-weight: bold;
+  z-index: 1;
+}
+
+/* Responsive Anpassungen mittels Media Queries */
+
+/* Tablets (min-width: 576px) */
+@media (min-width: 576px) {
+  .productGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+  }
+
+  .productCardContainer {
+    background-image: none; /* Entfernt das Hintergrundbild auf Tablets */
+    background-color: #ffffff;
+  }
+
+  .productCardContainer::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("https://images.unsplash.com/photo-1573581042946-359905ea3622?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"); /* Dekoratives Bild */
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.1; /* Transparenz */
+    pointer-events: none;
+  }
+}
+
+/* Desktops (min-width: 768px) */
+@media (min-width: 768px) {
+  .productGrid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+  }
+}
+
+/* Große Desktops (min-width: 992px) */
+@media (min-width: 992px) {
+  .productGrid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 35px;
+  }
+}
+
+/* Animationen */
+@keyframes slideUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

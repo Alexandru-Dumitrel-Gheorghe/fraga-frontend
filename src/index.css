@@ -1,13 +1,45 @@
-body {
+/* src/app.css */
+
+/* Resetări CSS de bază */
+* {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/* Fonturi globale */
+body {
+  font-family: "Roboto", sans-serif;
+  background-color: #f9fafb;
+  color: #333333;
+}
+
+/* Link-uri */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Butoane */
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+}
+
+/* Utilizare variabile CSS */
+:root {
+  --primary-color: #1e3a8a; /* Albastru închis */
+  --secondary-color: #2563eb; /* Albastru deschis */
+  --accent-color: #f59e0b; /* Galben-portocaliu */
+  --background-color: #f9fafb; /* Gri deschis */
+  --card-background: #ffffff; /* Alb */
+  --text-color: #374151; /* Gri închis */
+  --price-color: #10b981; /* Verde */
+  --error-color: #e53e3e; /* Roșu */
+  --loader-color: #3b82f6; /* Albastru */
+  --button-text-color: #ffffff; /* Alb */
+  --font-family-primary: "Montserrat", sans-serif;
+  --font-family-secondary: "Roboto", sans-serif;
 }

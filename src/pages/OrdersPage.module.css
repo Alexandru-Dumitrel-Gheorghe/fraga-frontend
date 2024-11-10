@@ -1,0 +1,238 @@
+/* Container principal pentru pagina de comenzi */
+.ordersContainer {
+  max-width: 1200px;
+  margin: 120px auto;
+  padding: 30px 20px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Titlul paginii */
+.title {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 40px;
+  color: #2c3e50;
+  font-weight: bold;
+}
+
+/* Stilizare pentru mesajul de încărcare */
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  color: #3498db;
+  font-size: 1.5rem;
+}
+
+/* Spinner pentru încărcare */
+.spinner {
+  width: 60px;
+  height: 60px;
+  border: 6px solid #f3f3f3;
+  border-top-color: #3498db;
+  border-radius: 50%;
+  animation: spinner 0.6s linear infinite;
+  margin: 50px auto;
+}
+
+@keyframes spinner {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Lista de comenzi */
+.orderList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Fiecare element al comenzii */
+.orderItem {
+  background-color: #f8f9fa;
+  padding: 25px;
+  margin-bottom: 25px;
+  border-left: 5px solid #3498db;
+  border-radius: 5px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.orderItem:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Header-ul comenzii (ID și data) */
+.orderHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.orderId {
+  font-size: 1.3rem;
+  color: #34495e;
+  font-weight: 600;
+  word-break: break-all; /* Permite spargerea liniei la ID-uri lungi */
+}
+
+.orderDate {
+  font-size: 1rem;
+  color: #7f8c8d;
+}
+
+/* Detaliile comenzii (status și total) */
+.orderDetails {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.orderStatus {
+  font-weight: bold;
+  color: #27ae60;
+}
+
+.orderTotal {
+  font-weight: bold;
+  color: #e67e22;
+}
+
+/* Titlul listei de articole */
+.orderItemsTitle {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  color: #2c3e50;
+  font-weight: 500;
+}
+
+/* Lista de articole din comandă */
+.orderItemsList {
+  list-style: disc;
+  padding-left: 20px;
+}
+
+.orderProductItem {
+  margin-bottom: 8px;
+  color: #555555;
+}
+
+/* Numele produsului */
+.productName {
+  font-weight: 500;
+  color: #2c3e50;
+}
+
+/* Cantitatea și prețul */
+.quantity,
+.price {
+  font-weight: 400;
+  color: #34495e;
+}
+
+/* Mesaj pentru produse indisponibile */
+.unavailable {
+  color: #e74c3c;
+  font-style: italic;
+}
+
+/* Mesaj când nu există comenzi */
+.noOrders {
+  text-align: center;
+  font-size: 1.3rem;
+  color: #95a5a6;
+  margin-top: 50px;
+}
+
+/* Media Queries pentru responsivitate */
+@media (max-width: 992px) {
+  .ordersContainer {
+    padding: 25px 15px;
+  }
+
+  .title {
+    font-size: 2.2rem;
+    margin-bottom: 30px;
+  }
+
+  .orderHeader {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .orderDate {
+    margin-top: 10px;
+  }
+
+  .orderDetails {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .orderTotal {
+    margin-top: 10px;
+  }
+
+  .orderItemsTitle {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .ordersContainer {
+    padding: 20px 10px;
+  }
+
+  .title {
+    font-size: 2rem;
+    margin-bottom: 25px;
+  }
+
+  .orderItem {
+    padding: 20px;
+  }
+
+  .orderId {
+    font-size: 1.2rem;
+  }
+
+  .orderDate {
+    font-size: 0.95rem;
+  }
+
+  .orderDetails {
+    gap: 10px;
+  }
+
+  .orderStatus,
+  .orderTotal {
+    font-size: 0.95rem;
+  }
+
+  .orderItemsTitle {
+    font-size: 1rem;
+  }
+
+  .orderProductItem {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .title {
+    font-size: 1.8rem;
+  }
+
+  .orderHeader {
+    align-items: flex-start;
+  }
+
+  .orderDetails {
+    align-items: flex-start;
+  }
+}

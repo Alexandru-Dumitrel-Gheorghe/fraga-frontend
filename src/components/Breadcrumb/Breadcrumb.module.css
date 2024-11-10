@@ -1,0 +1,26 @@
+/* src/components/Breadcrumb/Breadcrumb.module.css */
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 2rem;
+  background-color: #f9fafb;
+  border-bottom: 1px solid #e5e7eb;
+  font-family: "Roboto", sans-serif;
+  font-size: 0.9rem;
+}
+
+.breadcrumb a {
+  color: #3b82f6;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.breadcrumb a:hover {
+  color: #2563eb;
+}
+
+.breadcrumb span {
+  color: #6b7280;
+}

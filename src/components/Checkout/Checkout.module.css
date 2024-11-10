@@ -1,0 +1,179 @@
+/* Container für den Checkout */
+.checkoutContainer {
+  max-width: 800px;
+  margin: 120px auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Titel des Checkout */
+.checkoutContainer h2 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 30px;
+  color: #2c3e50;
+  font-weight: bold;
+}
+
+/* Formular im Checkout */
+.checkoutForm {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Einzelnes Formularfeld */
+.checkoutForm div {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+/* Label des Formularfelds */
+.checkoutForm label {
+  margin-bottom: 5px;
+  font-size: 1rem;
+  color: #34495e;
+}
+
+/* Input-Felder */
+.checkoutForm input {
+  padding: 10px 15px;
+  border: 1px solid #bdc3c7;
+  border-radius: 5px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+/* Fokus-Stil für Input-Felder */
+.checkoutForm input:focus {
+  border-color: #3498db;
+  outline: none;
+}
+
+/* Bestell-Button */
+.checkoutForm button {
+  padding: 12px 20px;
+  background-color: #27ae60;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  align-self: center;
+  width: 100%;
+  max-width: 200px;
+}
+
+/* Hover-Effekt für den Bestell-Button */
+.checkoutForm button:hover {
+  background-color: #1e8449;
+  transform: translateY(-2px);
+}
+
+/* Active-Effekt für den Bestell-Button */
+.checkoutForm button:active {
+  transform: translateY(0);
+}
+
+/* Nachricht für leeren Warenkorb oder Fehler */
+.emptyCart,
+.error {
+  text-align: center;
+  font-size: 1.5rem;
+  color: #95a5a6;
+  margin-top: 50px;
+}
+
+/* Loader */
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+}
+
+.spinner {
+  width: 60px;
+  height: 60px;
+  border: 6px solid #f3f3f3;
+  border-top-color: #3498db;
+  border-radius: 50%;
+  animation: spinner 0.6s linear infinite;
+}
+
+@keyframes spinner {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Media Queries für responsives Design */
+
+/* Tablet (min-width: 576px) */
+@media (min-width: 576px) {
+  .checkoutContainer {
+    padding: 25px;
+  }
+
+  .checkoutContainer h2 {
+    font-size: 2.2rem;
+    margin-bottom: 35px;
+  }
+
+  .checkoutForm input {
+    font-size: 1.05rem;
+  }
+
+  .checkoutForm button {
+    font-size: 1.15rem;
+    padding: 14px 24px;
+  }
+}
+
+/* Desktop (min-width: 768px) */
+@media (min-width: 768px) {
+  .checkoutForm {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .checkoutForm div {
+    flex: 0 0 48%;
+  }
+
+  .checkoutForm button {
+    width: auto;
+    max-width: none;
+  }
+}
+
+/* Groß-Desktop (min-width: 992px) */
+@media (min-width: 992px) {
+  .checkoutContainer {
+    padding: 30px 60px;
+  }
+
+  .checkoutContainer h2 {
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+  }
+
+  .checkoutForm div {
+    flex: 0 0 48%;
+    margin-bottom: 25px;
+  }
+
+  .checkoutForm input {
+    font-size: 1.1rem;
+  }
+
+  .checkoutForm button {
+    font-size: 1.2rem;
+    padding: 16px 28px;
+  }
+}

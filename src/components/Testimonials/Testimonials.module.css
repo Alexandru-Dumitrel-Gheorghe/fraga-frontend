@@ -1,0 +1,27 @@
+/* src/components/Testimonials/Testimonials.module.css */
+
+.testimonials {
+  padding: 4rem 2rem;
+  background-color: #f9fafb;
+}
+
+.testimonials h2 {
+  font-family: "Montserrat", sans-serif;
+  font-size: 2.5rem;
+  text-align: center;
+  color: #1e3a8a;
+  margin-bottom: 2rem;
+}
+
+.sliderContainer {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.slick-dots li button:before {
+  color: #2563eb;
+}
+
+.slick-dots li.slick-active button:before {
+  color: #1e3a8a;
+}

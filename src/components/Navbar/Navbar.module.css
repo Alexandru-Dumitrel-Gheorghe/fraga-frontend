@@ -1,0 +1,246 @@
+/* src/components/Navbar/Navbar.module.css */
+
+.navbar {
+  background-color: #fff;
+  border-bottom: 1px solid #eaeaea;
+  position: fixed; /* Fixează Navbar-ul în partea de sus */
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.navContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  height: 70px;
+}
+
+.logo a {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #0070f3;
+  text-decoration: none;
+}
+
+.menuIcon {
+  display: none;
+  font-size: 1.8rem;
+  color: #333;
+  cursor: pointer;
+}
+
+.navLinks {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+}
+
+.navLinks li a {
+  color: #333;
+  text-decoration: none;
+  font-size: 1rem;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.navLinks li a::after {
+  content: "";
+  width: 0%;
+  height: 2px;
+  background-color: #0070f3;
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  transition: width 0.3s ease;
+}
+
+.navLinks li a:hover::after {
+  width: 100%;
+}
+
+.navActions {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.cartLink {
+  position: relative;
+  color: #333;
+  text-decoration: none;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.cartCount {
+  position: absolute;
+  top: -8px;
+  right: -12px;
+  background-color: #ff0000;
+  color: #ffffff;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  font-size: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.authButton {
+  background-color: #0070f3;
+  border: none;
+  color: #ffffff;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: background-color 0.3s ease;
+}
+
+.authButton:hover {
+  background-color: #005bb5;
+}
+
+.logoutButton {
+  background-color: transparent;
+  border: none;
+  color: #ff0000;
+  cursor: pointer;
+  font-size: 0.9rem;
+  padding: 0.5rem 1rem;
+  text-align: left;
+  width: 100%;
+  transition: background-color 0.3s ease;
+}
+
+.logoutButton:hover {
+  background-color: rgba(255, 0, 0, 0.1);
+}
+
+.userMenu {
+  position: relative;
+}
+
+.userIcon {
+  font-size: 1.8rem;
+  color: #333;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.userIcon:hover {
+  color: #0070f3;
+}
+
+.userDropdown {
+  position: absolute;
+  top: 40px;
+  right: 0;
+  background-color: #ffffff;
+  border: 1px solid #eaeaea;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 180px;
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem 0;
+  animation: fadeIn 0.3s ease;
+}
+
+.userDropdown span {
+  font-size: 0.9rem;
+  margin: 0.5rem 1rem;
+  color: #333333;
+}
+
+.navItemMobile {
+  display: none;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 992px) {
+  .menuIcon {
+    display: block;
+  }
+
+  .navLinks {
+    position: fixed;
+    top: 70px;
+    left: -100%;
+    width: 100%;
+    height: calc(100% - 70px);
+    background-color: #ffffff;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    margin: 0;
+    padding-top: 2rem;
+    transition: left 0.3s ease;
+    z-index: 999;
+  }
+
+  .navLinks.active {
+    left: 0;
+  }
+
+  .navLinks li a {
+    font-size: 1.5rem;
+  }
+
+  .navActions {
+    display: none;
+  }
+
+  .navItemMobile {
+    display: block;
+    width: 80%;
+    text-align: center;
+  }
+
+  .navItemMobile .cartLink {
+    justify-content: center;
+    font-size: 1.2rem;
+  }
+
+  .navItemMobile .authButton,
+  .navItemMobile .logoutButton {
+    width: 100%;
+    text-align: center;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .navContainer {
+    padding: 0 1rem;
+  }
+
+  .userDropdown {
+    width: 150px;
+  }
+
+  .userDropdown span {
+    margin: 0.3rem 1rem;
+  }
+}

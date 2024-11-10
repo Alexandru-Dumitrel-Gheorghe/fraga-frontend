@@ -1,0 +1,130 @@
+/* src/pages/RegisterPage.module.css */
+
+.registerContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4rem 2rem;
+  background-color: #f9fafb; /* Gri deschis */
+  min-height: 100vh;
+}
+
+.registerCard {
+  background-color: #ffffff; /* Alb */
+  padding: 3rem 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+.title {
+  font-family: "Montserrat", sans-serif;
+  font-size: 2rem;
+  color: #1e3a8a; /* Albastru închis */
+  margin-bottom: 1.5rem;
+}
+
+.error {
+  color: #e53e3e; /* Roșu */
+  background-color: #fdecea;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
+
+.success {
+  color: #10b981; /* Verde */
+  background-color: #ecfdf5;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.label {
+  font-size: 0.95rem;
+  color: #374151; /* Gri închis */
+  margin-bottom: 0.5rem;
+}
+
+.input {
+  padding: 0.75rem 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #1e3a8a;
+  box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.3);
+}
+
+.submitButton {
+  background-color: #1e3a8a; /* Albastru închis */
+  color: #ffffff; /* Alb */
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 25px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.submitButton:hover {
+  background-color: #2563eb; /* Albastru deschis */
+  transform: translateY(-2px);
+}
+
+.redirect {
+  margin-top: 1.5rem;
+  font-size: 0.95rem;
+  color: #374151;
+}
+
+.redirect a {
+  color: #2563eb;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.redirect a:hover {
+  text-decoration: underline;
+}
+
+/* Responsivitate */
+@media (max-width: 480px) {
+  .registerCard {
+    padding: 2rem 1.5rem;
+  }
+
+  .title {
+    font-size: 1.75rem;
+  }
+
+  .input {
+    font-size: 0.95rem;
+  }
+
+  .submitButton {
+    font-size: 0.95rem;
+    padding: 0.6rem 1.2rem;
+  }
+}
