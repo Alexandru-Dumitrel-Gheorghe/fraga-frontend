@@ -1,15 +1,22 @@
-// src/components/Testimonial/Testimonial.jsx
+// src/components/Testimonials/Testimonials.jsx
 
 import React from "react";
-import styles from "./Testimonial.module.css";
+import styles from "./Testimonials.module.css";
 
-const Testimonial = ({ testimonial }) => {
+const Testimonials = ({ testimonials = [] }) => {
+  // Setăm un array gol ca valoare implicită
   return (
-    <div className={styles.testimonial}>
-      <p className={styles.quote}>"{testimonial.quote}"</p>
-      <p className={styles.author}>- {testimonial.author}</p>
-    </div>
+    <section className={styles.testimonials}>
+      <h2>Kundenbewertungen</h2>
+      {testimonials.length > 0 ? (
+        testimonials.map((testimonial, index) => (
+          <p key={index}>"{testimonial}" - Zufriedener Kunde</p>
+        ))
+      ) : (
+        <p>Keine Kundenbewertungen verfügbar.</p> // Mesaj fallback dacă nu există testimoniale
+      )}
+    </section>
   );
 };
 
-export default Testimonial;
+export default Testimonials;

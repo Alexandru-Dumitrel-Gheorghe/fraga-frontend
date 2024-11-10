@@ -1,10 +1,13 @@
+// src/pages/ProductsPage.jsx
+
 import React from "react";
+import HeroProductList from "../components/HeroProductList/HeroProductList";
 import ProductList from "../components/ProductList/ProductList";
 
 const ProductsPage = () => {
   return (
     <div>
-      <h2>Produkte</h2>
+      <HeroProductList />
       <ProductList />
     </div>
   );

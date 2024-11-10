@@ -2,23 +2,20 @@
 
 import React from "react";
 import styles from "./HeroSection.module.css";
-import { FaShoppingBag } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const HeroSection = () => {
   return (
     <section className={styles.hero}>
       <div className={styles.overlay}></div>
-      <div className={styles.heroContent}>
-        <h1 className={styles.animateText}>Willkommen bei Fraga</h1>
-        <p className={styles.animateText}>
-          Entdecken Sie die neuesten Trends und handgefertigten Accessoires.
+      <div className={styles.content}>
+        <h1 className={styles.title}>Willkommen bei Fraga!</h1>
+        <p className={styles.subtitle}>
+          Entdecken Sie die Eleganz unserer handgestrickten Kollektion.
         </p>
-        <a
-          href="/products"
-          className={`${styles.heroButton} ${styles.animateButton}`}
-        >
-          Jetzt kaufen <FaShoppingBag className={styles.icon} />
-        </a>
+        <Link to="/products" className={styles.shopButton}>
+          Jetzt einkaufen
+        </Link>
       </div>
     </section>
   );

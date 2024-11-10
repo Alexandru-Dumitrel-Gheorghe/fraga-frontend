@@ -1,77 +1,137 @@
-/* src/components/Categories/Categories.module.css */
-
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap");
+/* Categories.module.css */
 
 .categories {
   padding: 60px 20px;
-  background-color: #f9f9f9;
+  background-color: #f7f9fc;
   text-align: center;
 }
 
 .title {
   font-size: 2.5rem;
-  margin-bottom: 40px;
+  font-weight: bold;
   color: #333;
-  font-weight: 700;
-  font-family: "Montserrat", sans-serif;
-  position: relative;
+  margin-bottom: 20px;
 }
 
-.title::after {
-  content: "";
-  width: 80px;
-  height: 4px;
-  background-color: #ff6f61;
-  display: block;
-  margin: 10px auto;
-  border-radius: 2px;
+.description {
+  font-size: 1.2rem;
+  color: #666;
+  margin-bottom: 40px;
+  max-width: 600px;
+  margin: 40px auto;
 }
 
 .categoryGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 30px;
-  justify-items: center;
+  gap: 20px;
+  grid-template-columns: repeat(6, 1fr);
+  grid-auto-rows: 300px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-.categoryCardContainer {
-  width: 100%;
-  max-width: 280px;
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+/* Blocurile individuale */
+.categoryBlock {
+  position: relative;
   overflow: hidden;
-  text-align: center;
-  padding: 20px;
+  transition: transform 0.3s ease;
 }
 
-.categoryCardContainer:hover {
-  transform: translateY(-8px);
-  box-shadow: 0px 10px 24px rgba(0, 0, 0, 0.15);
+.categoryBlock:hover {
+  transform: scale(1.05);
 }
 
-.categoryCardContainer img {
+.imageContainer {
   width: 100%;
-  height: auto;
-  border-radius: 8px;
-  margin-bottom: 15px;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: flex-end;
 }
 
-.categoryCardContainer h3 {
-  font-size: 1.3rem;
-  font-weight: 600;
-  color: #333;
+.overlay {
+  width: 100%;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.4);
+  color: #fff;
+  text-align: left;
+  transition: background 0.3s ease;
+}
+
+.categoryBlock:hover .overlay {
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.name {
+  font-size: 1.5rem;
+  font-weight: bold;
   margin: 0;
-  font-family: "Montserrat", sans-serif;
 }
 
+.categoryDescription {
+  font-size: 1rem;
+  margin: 5px 0;
+}
+
+.viewProducts {
+  font-size: 0.9rem;
+  color: #ffffff;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* Dimensiuni variabile pentru blocuri în grilă */
+.category0 {
+  grid-column: span 3;
+  grid-row: span 2;
+}
+
+.category1 {
+  grid-column: span 2;
+  grid-row: span 1;
+}
+
+.category2 {
+  grid-column: span 1;
+  grid-row: span 2;
+}
+
+.category3 {
+  grid-column: span 2;
+  grid-row: span 1;
+}
+
+.category4 {
+  grid-column: span 3;
+  grid-row: span 1;
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
-  .title {
-    font-size: 2rem;
+  .categoryGrid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 200px;
   }
 
-  .categoryGrid {
-    gap: 20px;
+  .category0,
+  .category1,
+  .category2,
+  .category3,
+  .category4 {
+    grid-column: span 2;
+    grid-row: span 1;
+  }
+
+  .name {
+    font-size: 1.2rem;
+  }
+
+  .categoryDescription {
+    font-size: 0.9rem;
+  }
+
+  .viewProducts {
+    font-size: 0.8rem;
   }
 }

@@ -1,20 +1,16 @@
-/* src/components/HeroSection/HeroSection.module.css */
-
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap");
+/* HeroSection.module.css */
 
 .hero {
   position: relative;
-  width: 100%;
-  height: 80vh;
-  background-image: url("https://images.unsplash.com/photo-1483181957632-8bda974cbc91?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
-  background-size: cover;
-  background-position: center;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #fff;
+  height: 100vh;
+  background-image: url("https://images.unsplash.com/photo-1483181957632-8bda974cbc91?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"); /* Înlocuiește cu URL-ul imaginii tale */
+  background-size: cover;
+  background-position: center;
+  color: #ffffff;
   text-align: center;
-  font-family: "Montserrat", sans-serif;
   overflow: hidden;
 }
 
@@ -24,33 +20,17 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  z-index: 1;
+  background: rgba(0, 0, 0, 0.5); /* Suprapunere transparentă pentru contrast */
+  z-index: 0;
 }
 
-.heroContent {
+.content {
   position: relative;
-  z-index: 2;
-  max-width: 800px;
-  padding: 0 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  z-index: 1;
+  animation: fadeIn 1.5s ease-out;
 }
 
-.animateText {
-  opacity: 0;
-  animation: fadeInSlide 1s ease forwards;
-  animation-delay: 0.3s;
-}
-
-.animateButton {
-  opacity: 0;
-  animation: fadeInSlide 1.2s ease forwards;
-  animation-delay: 0.6s;
-}
-
-@keyframes fadeInSlide {
+@keyframes fadeIn {
   from {
     opacity: 0;
     transform: translateY(20px);
@@ -61,65 +41,75 @@
   }
 }
 
-.hero h1 {
+.title {
   font-size: 3.5rem;
-  margin-bottom: 20px;
-  font-weight: 700;
+  font-weight: bold;
+  margin: 0;
+  padding: 0;
+  color: #f0f0f0;
+  animation: fadeInDown 2s ease-out;
 }
 
-.hero p {
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.subtitle {
   font-size: 1.5rem;
-  margin-bottom: 30px;
-  line-height: 1.5;
-  font-weight: 400;
+  max-width: 600px;
+  color: #e0e0e0;
+  margin: 20px 0;
+  animation: fadeInUp 2s ease-out;
 }
 
-.heroButton {
-  display: inline-flex;
-  align-items: center;
-  background-color: #ff6f61;
-  color: #fff;
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.shopButton {
+  display: inline-block;
   padding: 15px 30px;
+  font-size: 1rem;
+  background: linear-gradient(120deg, #ff7e5f, #feb47b);
+  color: #ffffff;
   border: none;
   border-radius: 50px;
-  text-decoration: none;
-  font-size: 1.2rem;
-  transition: background-color 0.3s ease, transform 0.2s ease;
   cursor: pointer;
-  font-weight: 700;
-  font-family: inherit;
+  text-decoration: none;
+  font-weight: bold;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.heroButton:hover {
-  background-color: #e55b50;
-  transform: scale(1.05);
+.shopButton:hover {
+  transform: scale(1.1);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
 }
 
-.icon {
-  margin-left: 10px;
-  font-size: 1.5rem;
-  transition: transform 0.3s ease;
-}
-
-.heroButton:hover .icon {
-  transform: rotate(20deg);
-}
-
+/* Stiluri responsive pentru dispozitive mobile */
 @media (max-width: 768px) {
-  .hero {
-    height: 60vh;
-  }
-
-  .hero h1 {
+  .title {
     font-size: 2.5rem;
   }
-
-  .hero p {
+  .subtitle {
     font-size: 1.2rem;
+    padding: 0 20px;
   }
-
-  .heroButton {
+  .shopButton {
     padding: 12px 25px;
-    font-size: 1rem;
+    font-size: 0.9rem;
   }
 }
