@@ -1,126 +1,67 @@
-/* Container principal */
-/* src/components/ProductList/ProductList.module.css */
-
-.productList {
-  display: grid;
-  gap: 30px; /* Mărește spațiul dintre carduri */
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  max-width: 1200px;
-  margin: 80px 80px; /* Mai mult spațiu sus și jos */
-}
-
-.productCard {
-  padding: 25px; /* Mai mult padding pentru un aspect mai aerisit */
-  margin-bottom: 20px; /* Spațiu suplimentar între rânduri */
-  position: relative;
-  background-color: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  text-align: center;
-}
-
-.productCard:hover {
-  transform: scale(1.05);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-}
-
-/* Alte stilizări */
-
 .productContainer {
-  padding: 50px 20px;
-  background-color: #f7f9fc;
-  text-align: center;
-}
-
-/* Filtrul de categorii */
-.categoryFilter {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 25px;
-  gap: 15px;
+  gap: 30px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  flex-wrap: wrap;
 }
 
-.categoryFilter label {
-  font-size: 1.2rem;
-  font-weight: bold;
-  color: #333;
+.sidebar {
+  width: 200px;
 }
 
-.categoryFilter select {
-  padding: 10px 15px;
-  font-size: 1rem;
-  border: 1px solid #ddd;
-  border-radius: 20px;
-  background-color: #ffffff;
-  color: #333;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+.categoryList {
+  list-style-type: none;
+  padding: 0;
+}
+
+.categoryList li {
+  margin: 10px 0;
   cursor: pointer;
-  transition: all 0.3s ease;
+  color: #333;
+  font-weight: 500;
 }
 
-.categoryFilter select:hover {
-  border-color: #27ae60;
+.categoryList li:hover {
+  color: #0073e6;
 }
 
-/* Badge pentru produsele noi */
-.badge {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  background-color: #e74c3c;
-  color: #ffffff;
-  padding: 5px 10px;
-  font-size: 0.8rem;
-  border-radius: 8px;
-  font-weight: bold;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-}
-
-/* Grid pentru lista de produse */
-.productList {
+.productGrid {
   display: grid;
-  gap: 25px;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  max-width: 1300px;
-  margin: 0 auto;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  flex-grow: 1;
 }
 
-/* Card de produs */
 .productCard {
   position: relative;
-  background-color: #ffffff;
-  border-radius: 12px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   overflow: hidden;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s ease;
   text-align: center;
-  padding: 25px;
+  padding: 10px;
 }
 
 .productCard:hover {
   transform: scale(1.05);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
 }
 
 .productImage {
   width: 100%;
-  height: 220px;
+  height: 200px;
   object-fit: cover;
   border-radius: 8px;
-  transition: opacity 0.3s ease;
 }
 
-/* Overlay efect */
 .overlay {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 0.3);
   opacity: 0;
   display: flex;
   justify-content: center;
@@ -138,79 +79,55 @@
 }
 
 .icon {
-  color: #ffffff;
-  font-size: 1.8rem;
+  color: white;
+  font-size: 1.5rem;
   cursor: pointer;
-  transition: color 0.3s ease;
 }
 
-.icon:hover {
-  color: #ffcc00;
-}
-
-/* Detalii card produs */
 .cardContent {
-  padding: 20px 0;
+  padding: 15px;
 }
 
 .productName {
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   color: #333;
-  font-weight: 600;
-  margin-bottom: 8px;
-}
-
-.categoryLabel {
-  font-size: 0.9rem;
-  color: #999;
-  margin-bottom: 10px;
+  font-weight: bold;
 }
 
 .productPrice {
-  font-size: 1.1rem;
-  color: #27ae60;
-  font-weight: bold;
-}
-
-/* Buton de afișare a mai multor produse */
-.buttonContainer {
-  text-align: center;
-  margin-top: 40px;
-}
-
-.showMoreButton {
-  padding: 12px 25px;
   font-size: 1rem;
-  color: #ffffff;
-  background-color: #27ae60;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: bold;
-  transition: background-color 0.3s ease;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  color: #27ae60;
+  margin-top: 5px;
 }
 
-.showMoreButton:hover {
-  background-color: #1e8449;
+.colorOptions {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  margin-top: 10px;
 }
 
-/* Responsive */
+.colorDot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+@media (max-width: 768px) {
+  .productContainer {
+    flex-direction: column;
+  }
+  .sidebar {
+    width: 100%;
+    text-align: center;
+  }
+}
+
 @media (max-width: 576px) {
   .productCard {
-    padding: 15px;
+    padding: 10px;
   }
-
   .productImage {
     height: 160px;
-  }
-
-  .productName,
-  .productPrice {
-    font-size: 1rem;
-  }
-
-  .icon {
-    font-size: 1.5rem;
   }
 }

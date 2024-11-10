@@ -1,70 +1,49 @@
-# Getting Started with Create React App
+# Fraga E-Commerce Website
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Eine stilvolle und moderne E-Commerce-Website für handgestrickte Kleidung und Accessoires, die Nutzern ein ansprechendes Einkaufserlebnis bietet.
 
-## Available Scripts
+## **Features**
 
-In the project directory, you can run:
+- **Produktanzeige**: Übersicht über handgestrickte Kleidung mit Details und Bildern.
+- **Produktkategorien**: Durchsuchen der Produkte in verschiedenen Kategorien.
+- **Warenkorb**: Produkte können dem Warenkorb hinzugefügt und verwaltet werden.
+- **Bestellübersicht**: Kunden können ihre Bestellungen anzeigen und deren Status verfolgen.
+- **Admin-Dashboard**: Verwaltung der Bestellungen und Überwachung des Bestellstatus.
+- **Benutzerregistrierung und -anmeldung**: Sichere Authentifizierung und Registrierung.
 
-### `npm start`
+## **Installation**
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+1. **Repository klonen**:
+   ```bash
+   git clone https://github.com/Alexandru-Dumitrel-Gheorghe/Fraga.git
+   cd Fraga
+   ```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## **Verwendung**
 
-### `npm test`
+- **Produkte durchsuchen** Auf der Startseite und in den Kategorien nach Produkten suchen.
+- **Zum Warenkorb hinzufügen** Produktseite öffnen und auf „In den Warenkorb“ klicken.
+- **Bestellungen verwalten** Im Kundenkonto Bestellungen einsehen und den Status verfolgen.
+- **Admin-Dashboard** Nur für Administratoren zugänglich zur Bestellverwaltung und Statusänderung.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## **Technologien**
 
-### `npm run build`
+- **Frontend** React, CSS Modules, Axios, React Router
+- **Backend** Node.js, Express, MongoDB
+- **Authentifizierung** JSON Web Token (JWT)
+- **Styling** Custom CSS und CSS Modules für modulare und saubere Stile
+- **Hosting** Netlify (Frontend) und Vercel (Backend)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## **Mitwirken**
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Beiträge sind willkommen! Um beizutragen:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Fork das Repository.
+Erstelle einen neuen Branch (git checkout -b feature/DeinFeature).
+Committe deine Änderungen (git commit -m 'Feature hinzufügen').
+Pushe zum Branch (git push origin feature/DeinFeature).
+Erstelle einen Pull Request.
 
-### `npm run eject`
+## \*\*Kontakt
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Erstellt von Alexandru Dumitrel Gheorghe. Bei Fragen gerne eine Nachricht an alexpulan@gmail.com senden.

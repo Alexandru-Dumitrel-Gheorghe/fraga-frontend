@@ -7,7 +7,6 @@ import { FaHeart, FaEye } from "react-icons/fa";
 const ProductList = () => {
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
-  const [visibleProducts, setVisibleProducts] = useState(4);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState("all");
@@ -38,15 +37,6 @@ const ProductList = () => {
     }
   }, [selectedCategory, products]);
 
-  const showMoreProducts = () => {
-    setVisibleProducts((prev) => prev + 4);
-  };
-
-  const handleCategoryChange = (e) => {
-    setSelectedCategory(e.target.value);
-    setVisibleProducts(4); // Resetăm numărul de produse vizibile pentru noua categorie
-  };
-
   if (loading) {
     return (
       <div className={styles.loader}>
@@ -61,18 +51,18 @@ const ProductList = () => {
 
   return (
     <div className={styles.productContainer}>
-      <div className={styles.categoryFilter}>
-        <label>Kategorie:</label>
-        <select onChange={handleCategoryChange} value={selectedCategory}>
-          <option value="all">Alle Produkte</option>
-          <option value="pullover">Pullover</option>
-          <option value="taschen">Taschen</option>
-          <option value="muetzen">Mützen</option>
-          <option value="hosen">Hosen</option>
-        </select>
-      </div>
-      <div className={styles.productList}>
-        {filteredProducts.slice(0, visibleProducts).map((product) => (
+      <aside className={styles.sidebar}>
+        <h3>Alle Produkte</h3>
+        <ul className={styles.categoryList}>
+          <li onClick={() => setSelectedCategory("all")}>Alle Produkte</li>
+          <li onClick={() => setSelectedCategory("pullover")}>Pullover</li>
+          <li onClick={() => setSelectedCategory("taschen")}>Taschen</li>
+          <li onClick={() => setSelectedCategory("muetzen")}>Mützen</li>
+          <li onClick={() => setSelectedCategory("hosen")}>Hosen</li>
+        </ul>
+      </aside>
+      <div className={styles.productGrid}>
+        {filteredProducts.map((product) => (
           <div key={product._id} className={styles.productCard}>
             {product.isNew && <span className={styles.badge}>Neu</span>}
             <img
@@ -90,19 +80,21 @@ const ProductList = () => {
             </div>
             <div className={styles.cardContent}>
               <h3 className={styles.productName}>{product.name}</h3>
-              <p className={styles.categoryLabel}>{product.category}</p>
               <p className={styles.productPrice}>{product.price} €</p>
+              <div className={styles.colorOptions}>
+                <span
+                  className={styles.colorDot}
+                  style={{ backgroundColor: "blue" }}
+                ></span>
+                <span
+                  className={styles.colorDot}
+                  style={{ backgroundColor: "black" }}
+                ></span>
+              </div>
             </div>
           </div>
         ))}
       </div>
-      {visibleProducts < filteredProducts.length && (
-        <div className={styles.buttonContainer}>
-          <button onClick={showMoreProducts} className={styles.showMoreButton}>
-            Mehr Produkte anzeigen
-          </button>
-        </div>
-      )}
     </div>
   );
 };
