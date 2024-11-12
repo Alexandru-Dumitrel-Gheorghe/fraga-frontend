@@ -1,361 +1,125 @@
-/* Variables for Consistency and Ease of Modification */
 :root {
   --background: #ffffff;
   --text: #333333;
-  --primary: #007bff; /* Vibrant Blue */
-  --secondary: #489ae1; /* Light Gray */
-  --hover: #0056b3; /* Dark Blue for Hover */
-  --dropdownBackground: #ffffff;
-  --dropdownText: #333333;
-  --toggleBorder: #6b8096;
-  --boxShadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  --boxShadowScrolled: 0 4px 15px rgba(0, 0, 0, 0.2);
-  --transitionDuration: 0.3s;
+  --primary: #007bff;
+  --secondary: #eaeaea;
+  --hover: #0056b3;
+  --iconColor: #333333;
   --navbarHeight: 70px;
-  --navbarScrolledHeight: 60px;
   --fontFamily: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  --overlayBackground: rgba(0, 0, 0, 0.5);
-  --menuBackground: #ffffff;
-  --menuWidth: 300px;
-}
-
-/* Global Reset */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
 }
 
 body {
   font-family: var(--fontFamily);
 }
 
-/* Navbar Styling */
 .navbar {
-  width: 100%;
   background: var(--background);
-  color: var(--text);
-  box-shadow: var(--boxShadow);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid var(--secondary);
   position: fixed;
   top: 0;
   z-index: 1000;
-  transition: background-color var(--transitionDuration) ease,
-    box-shadow var(--transitionDuration) ease,
-    height var(--transitionDuration) ease;
-  height: var(--navbarHeight);
 }
 
-.navbarScrolled {
-  background-color: rgba(255, 255, 255, 0.95);
-  box-shadow: var(--boxShadowScrolled);
-  height: var(--navbarScrolledHeight);
-}
-
-/* Top Navigation */
 .topNav {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  padding: 0 20px;
-  height: 100%;
-}
-
-.siteTitle {
-  font-size: 1.8rem;
-  font-weight: bold;
-  color: var(--primary);
-  letter-spacing: 1px;
-  transition: color var(--transitionDuration) ease;
-}
-
-.titleLink {
-  text-decoration: none;
-  color: var(--primary);
-}
-
-.titleLink:hover {
-  color: var(--hover);
-}
-
-/* Search Bar */
-.searchBar {
-  flex: 1;
-  max-width: 500px;
-  margin: 0 20px;
-  display: flex;
   align-items: center;
-  position: relative;
+  padding: 10px 20px;
+  border-bottom: 1px solid var(--secondary);
 }
 
-.searchForm {
-  display: flex;
-  width: 100%;
-}
-
-.searchInput {
-  width: 100%;
-  padding: 10px 15px;
-  border: 1px solid var(--secondary);
-  border-radius: 30px 0 0 30px;
-  outline: none;
-  font-size: 1rem;
-  background-color: #f8f9fa;
-  color: var(--text);
-  transition: border-color var(--transitionDuration) ease,
-    background-color var(--transitionDuration) ease;
-}
-
-.searchInput::placeholder {
-  color: var(--secondary);
-}
-
-.searchInput:focus {
-  border-color: var(--primary);
-  background-color: #ffffff;
-}
-
-.searchButton {
-  padding: 10px 15px;
-  border: 1px solid var(--primary);
-  border-left: none;
-  background-color: var(--primary);
-  color: #ffffff;
-  border-radius: 0 30px 30px 0;
-  cursor: pointer;
-  transition: background-color var(--transitionDuration) ease,
-    border-color var(--transitionDuration) ease;
-}
-
-.searchButton:hover {
-  background-color: var(--hover);
-  border-color: var(--hover);
-}
-
-/* Actions (Cart, Wishlist, User) */
-.actions {
-  display: flex;
-  align-items: center;
-}
-
-.actionLink {
-  display: flex;
-  align-items: center;
-  margin-left: 15px;
-  color: var(--text);
-  text-decoration: none;
-  position: relative;
-  font-weight: 500;
-  font-size: 1rem;
-  transition: color var(--transitionDuration) ease,
-    transform var(--transitionDuration) ease;
-}
-
-.actionLink:hover,
-.active {
-  color: var(--primary);
-  transform: scale(1.1);
-}
-
-.actionText {
-  margin-left: 5px;
-}
-
-.userMenu {
-  position: relative;
-  margin-left: 15px;
-}
-
-.userButton {
-  background: none;
-  border: none;
-  padding: 0;
-  cursor: pointer;
-  color: var(--primary);
-  font-size: 1.6rem;
-  transition: color var(--transitionDuration) ease,
-    transform var(--transitionDuration) ease;
-}
-
-.userButton:hover {
-  color: var(--hover);
-  transform: scale(1.1);
-}
-
-/* User Dropdown */
-.userDropdown {
-  position: absolute;
-  top: 45px;
-  right: 0;
-  background-color: var(--dropdownBackground);
-  border: 1px solid var(--secondary);
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  padding: 15px 20px;
-  min-width: 180px;
-  z-index: 1001;
-  animation: fadeIn 0.2s ease-out;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-10%);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.logoutButton {
-  width: 100%;
-  padding: 10px;
-  background-color: var(--primary);
-  color: #ffffff;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 1rem;
-  transition: background-color var(--transitionDuration) ease,
-    transform var(--transitionDuration) ease;
-}
-
-.logoutButton:hover {
-  background-color: var(--hover);
-  transform: translateY(-2px);
-}
-
-/* Mobile Menu Button */
-.mobileMenuButton {
-  display: none;
-  background: none;
-  border: none;
-  font-size: 2rem;
-  color: var(--primary);
-  cursor: pointer;
-  transition: color var(--transitionDuration) ease;
-}
-
-.mobileMenuButton:hover {
-  color: var(--hover);
-}
-
-/* Bottom Navigation */
-.bottomNav {
-  display: flex;
-  justify-content: center;
-  background-color: #f8f9fa;
-  transition: max-height var(--transitionDuration) ease,
-    opacity var(--transitionDuration) ease,
-    transform var(--transitionDuration) ease;
-  overflow: hidden;
-  transform: translateY(0);
-}
-
-.bottomNavActive {
-  max-height: 1000px;
-  box-shadow: var(--boxShadowScrolled);
-}
-
+.categoryLinks,
 .navLinks {
   display: flex;
+  gap: 15px;
   list-style: none;
-  padding: 15px 0;
-  margin: 0;
 }
 
-.navLinks li {
-  margin: 0 15px;
-}
-
+.categoryLinks a,
 .navLinks a {
   color: var(--text);
   text-decoration: none;
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: 500;
-  transition: color var(--transitionDuration) ease,
-    border-bottom var(--transitionDuration) ease;
-  position: relative;
+  transition: color 0.3s;
 }
 
-.navLinks a::after {
-  content: "";
-  position: absolute;
-  width: 0%;
-  height: 2px;
-  background-color: var(--primary);
-  left: 0;
-  bottom: -4px;
-  transition: width var(--transitionDuration) ease;
+.activeCategory,
+.activeLink {
+  font-weight: bold;
+  border-bottom: 2px solid var(--text);
 }
 
-.navLinks a:hover::after,
-.activeLink::after {
-  width: 100%;
+.logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: var(--primary);
 }
 
-/* Media Query */
+.iconGroup {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--text);
+  cursor: pointer;
+}
+
+/* Hide mobile-only items on desktop */
+.mobileOnly {
+  display: none;
+}
+
+/* Responsive Design for mobile screens */
 @media (max-width: 768px) {
-  .topNav {
-    flex-wrap: wrap;
-    padding: 10px 15px;
+  .categoryLinks {
+    display: none; /* Hide top navigation links on mobile */
   }
 
-  .mobileMenuButton {
+  .hamburger {
     display: block;
   }
 
-  .bottomNav {
-    position: fixed;
-    top: 0;
-    left: -100%;
-    width: var(--menuWidth);
-    height: 100%;
+  .mainNav {
+    display: none;
     flex-direction: column;
-    align-items: flex-start;
-    background-color: var(--menuBackground);
-    padding: 70px 20px;
-    transition: left var(--transitionDuration) ease;
-    transform: translateX(0);
+    align-items: center;
+    width: 100%;
   }
 
-  .bottomNavActive {
-    left: 0;
+  .mainNav.show {
+    display: flex;
   }
 
   .navLinks {
     flex-direction: column;
-    width: 100%;
-    padding: 20px 0;
-  }
-
-  .navLinks li {
-    margin: 15px 0;
-    width: 100%;
+    gap: 10px;
+    padding: 10px 0;
+    text-align: center;
   }
 
   .navLinks a {
-    font-size: 1.4rem;
+    font-size: 1rem;
+    padding: 10px;
     width: 100%;
-    padding: 10px 0;
-    border-bottom: 1px solid #eaeaea;
   }
 
-  .overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: var(--overlayBackground);
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity var(--transitionDuration) ease,
-      visibility var(--transitionDuration) ease;
+  /* Show mobile-only links in the hamburger menu */
+  .mobileOnly {
+    display: block;
   }
 
-  .overlayActive {
-    opacity: 1;
-    visibility: visible;
+  .iconGroup.show {
+    display: flex;
   }
 }
