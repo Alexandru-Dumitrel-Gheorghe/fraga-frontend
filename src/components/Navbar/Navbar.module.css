@@ -75,6 +75,60 @@ body {
   cursor: pointer;
 }
 
+/* User Icon and Dropdown */
+.userButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.userIcon {
+  font-size: 1.5rem;
+  color: var(--text);
+  transition: color 0.3s;
+}
+
+.userMenu:hover .userIcon {
+  color: var(--hover);
+}
+
+.userDropdown {
+  position: absolute;
+  right: 0;
+  top: 100%;
+  background: var(--background);
+  border: 1px solid var(--secondary);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  border-radius: 4px;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  width: 150px;
+}
+
+.authLink,
+.logoutButton {
+  display: flex;
+  align-items: center;
+  color: var(--text);
+  text-decoration: none;
+  padding: 10px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  transition: color 0.3s;
+  width: 100%;
+  text-align: left;
+}
+
+.authLink:hover,
+.logoutButton:hover {
+  color: var(--hover);
+}
+
 /* Hide mobile-only items on desktop */
 .mobileOnly {
   display: none;

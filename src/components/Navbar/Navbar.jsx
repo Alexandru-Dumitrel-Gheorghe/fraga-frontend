@@ -8,7 +8,13 @@ import React, {
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import { CartContext } from "../../context/CartContext";
-import { FaShoppingCart, FaHeart, FaBars, FaTimes } from "react-icons/fa";
+import {
+  FaShoppingCart,
+  FaHeart,
+  FaBars,
+  FaTimes,
+  FaUser,
+} from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
 import styles from "./Navbar.module.css";
 
@@ -26,8 +32,6 @@ const Navbar = () => {
     navigate("/");
     setDropdownOpen(false);
   }, [setUser, navigate]);
-
-  const toggleDropdown = () => setDropdownOpen((prev) => !prev);
 
   const closeMenu = useCallback(() => {
     setDropdownOpen(false);
@@ -84,8 +88,8 @@ const Navbar = () => {
           {menuOpen ? <FaTimes /> : <FaBars />}
         </button>
 
-        {/* Icons and User Button */}
-        <div className={`${styles.iconGroup} ${menuOpen ? styles.show : ""}`}>
+        {/* Icons and User Dropdown Trigger */}
+        <div className={`${styles.iconGroup}`}>
           <Link to="/wishlist" aria-label="Wunschliste">
             <FaHeart className={styles.icon} />
           </Link>
@@ -94,15 +98,19 @@ const Navbar = () => {
             <span className={styles.cartCount}>{cartItems.length}</span>
           </Link>
 
-          <div className={styles.userMenu}>
+          {/* User Icon and Dropdown */}
+          <div
+            className={styles.userMenu}
+            onMouseEnter={() => setDropdownOpen(true)}
+            onMouseLeave={() => setDropdownOpen(false)}
+          >
             <button
               className={styles.userButton}
-              onClick={toggleDropdown}
               aria-haspopup="true"
               aria-expanded={dropdownOpen}
               aria-label="Benutzermenü"
             >
-              {user ? `Hallo, ${user.name}` : "Anmelden"}
+              <FaUser className={styles.userIcon} />
             </button>
             <AnimatePresence>
               {dropdownOpen && (
