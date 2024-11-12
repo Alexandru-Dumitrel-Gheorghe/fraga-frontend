@@ -15,30 +15,31 @@ const FeaturedProducts = () => {
       description: "Ein warmer, handgestrickter Pullover für kalte Tage.",
       isNew: true,
     },
-    {
-      id: 2,
-      name: "Moderne Handtasche",
-      price: 29.99,
-      image:
-        "https://images.unsplash.com/photo-1527383214149-cb7be04ae387?q=80&w=2070&auto=format&fit=crop",
-      description: "Eine elegante und moderne Tasche für jeden Anlass.",
-    },
+
     {
       id: 3,
-      name: "Bequeme Hose",
-      price: 39.99,
+      name: "Handgefertigtes Kleid",
+      price: 79.99,
       image:
-        "https://images.unsplash.com/photo-1616178193482-4dad15347c26?q=80&w=1936&auto=format&fit=crop",
-      description: "Eine bequeme Hose, die Stil und Komfort vereint.",
+        "https://images.unsplash.com/photo-1632754727545-f5d44fb455de?q=80&w=1965&auto=format&fit=crop",
+      description: "Elegantes Kleid für besondere Anlässe.",
       isNew: true,
     },
     {
       id: 4,
-      name: "Warmes Strickmütze",
-      price: 19.99,
+      name: "Handgemachter Cardigan",
+      price: 59.99,
       image:
-        "https://images.unsplash.com/photo-1457545195570-67f207084966?q=80&w=2092&auto=format&fit=crop",
-      description: "Eine handgestrickte Mütze für zusätzlichen Schutz.",
+        "https://images.unsplash.com/photo-1715176531842-7ffda4acdfa9?q=80&w=1974&auto=format&fit=crop",
+      description: "Ein warmer, stilvoller Cardigan.",
+    },
+    {
+      id: 5,
+      name: "Genähtes Kleid",
+      price: 99.99,
+      image:
+        "https://images.unsplash.com/photo-1674924066210-e6f45074b668?q=80&w=1974&auto=format&fit=crop",
+      description: "Kleid aus hochwertiger Handarbeit.",
     },
   ];
 
@@ -46,7 +47,7 @@ const FeaturedProducts = () => {
     <section className={styles.featured}>
       <h2 className={styles.title}>Beliebte Produkte</h2>
       <p className={styles.description}>
-        Entdecken Sie unsere handgestrickten Lieblingsstücke, von Pullovern bis
+        Entdecken Sie unsere handgefertigten Lieblingsstücke, von Pullovern bis
         zu Accessoires.
       </p>
       <div className={styles.productGrid}>

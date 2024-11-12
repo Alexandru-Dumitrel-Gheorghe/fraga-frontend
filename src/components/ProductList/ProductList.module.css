@@ -1,133 +1,503 @@
+/* ===========================
+   Variabile Globale
+=========================== */
+:root {
+  /* Culori */
+  --color-background: #f9f9f9;
+  --color-sidebar: #ffffff;
+  --color-primary: #0070f3;
+  --color-secondary: #28a745;
+  --color-danger: #ff4757;
+  --color-text: #333333;
+  --color-text-secondary: #555555;
+  --color-border: #eaeaea;
+  --color-shadow: rgba(0, 0, 0, 0.1);
+  --color-shadow-hover: rgba(0, 0, 0, 0.15);
+
+  /* Spațiere */
+  --spacing-padding: 2rem;
+  --spacing-gap: 2rem;
+
+  /* Altele */
+  --border-radius: 12px;
+  --transition-duration: 0.3s;
+  --font-primary: "Arial, sans-serif";
+}
+
+/* ===========================
+   Reset și Tipografie
+=========================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-primary);
+  background-color: var(--color-background);
+  color: var(--color-text);
+  line-height: 1.6;
+}
+
+/* ===========================
+   Layout Principal
+=========================== */
 .productContainer {
   display: flex;
-  gap: 30px;
-  padding: 20px;
-  background-color: #f9f9f9;
+  padding: var(--spacing-padding);
+  gap: var(--spacing-gap);
   flex-wrap: wrap;
+  background-color: var(--color-background);
 }
 
 .sidebar {
-  width: 200px;
+  width: 220px;
+  background-color: var(--color-sidebar);
+  padding: 2rem 1.5rem;
+  border-radius: var(--border-radius);
+  box-shadow: 0 4px 12px var(--color-shadow);
+  transition: box-shadow var(--transition-duration) ease;
 }
 
+.sidebar:hover {
+  box-shadow: 0 6px 16px var(--color-shadow-hover);
+}
+
+.mainContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ===========================
+   Tipografie
+=========================== */
+.sidebar h3 {
+  margin-bottom: 1.5rem;
+  color: var(--color-text);
+  font-size: 1.6rem;
+  border-bottom: 2px solid #e0e0e0;
+  padding-bottom: 0.5rem;
+}
+
+.productName {
+  font-size: 1.4rem;
+  margin-bottom: 0.75rem;
+  color: var(--color-text);
+  transition: color var(--transition-duration) ease;
+}
+
+.productName:hover {
+  color: var(--color-primary);
+}
+
+.productPrice {
+  font-size: 1.2rem;
+  color: var(--color-primary);
+  margin-bottom: 0.5rem;
+}
+
+.productMaterials {
+  font-size: 1rem;
+  color: #666666;
+  margin-bottom: 1rem;
+}
+
+/* ===========================
+   Liste & Navigare
+=========================== */
 .categoryList {
-  list-style-type: none;
+  list-style: none;
   padding: 0;
+  margin: 0;
 }
 
 .categoryList li {
-  margin: 10px 0;
+  position: relative;
+  padding: 0.8rem 0;
+  padding-left: 1.5rem;
   cursor: pointer;
-  color: #333;
-  font-weight: 500;
+  color: var(--color-text-secondary);
+  font-size: 1.1rem;
+  border-radius: 8px;
+  transition: color var(--transition-duration) ease,
+    transform var(--transition-duration) ease,
+    background-color var(--transition-duration) ease;
 }
 
-.categoryList li:hover {
-  color: #0073e6;
+.categoryList li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: var(--color-primary);
 }
 
+.categoryList li:hover,
+.categoryList li.active {
+  color: var(--color-primary);
+  font-weight: bold;
+  background-color: #e6f0ff;
+  transform: translateX(5px);
+}
+
+/* ===========================
+   Sortare
+=========================== */
+.sorting {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  gap: 0.5rem;
+}
+
+.sorting label {
+  font-size: 1rem;
+  color: var(--color-text);
+}
+
+.sorting select {
+  padding: 0.5rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color var(--transition-duration) ease;
+}
+
+.sorting select:hover,
+.sorting select:focus {
+  border-color: var(--color-primary);
+  outline: none;
+}
+
+/* ===========================
+   Grid de Produse
+=========================== */
 .productGrid {
   display: grid;
-  gap: 20px;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  flex-grow: 1;
+  gap: 2rem;
 }
 
 .productCard {
   position: relative;
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  background-color: var(--color-sidebar);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
   overflow: hidden;
-  transition: transform 0.3s ease;
-  text-align: center;
-  padding: 10px;
+  transition: transform var(--transition-duration) ease,
+    box-shadow var(--transition-duration) ease;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .productCard:hover {
-  transform: scale(1.05);
+  transform: translateY(-10px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+.badge {
+  position: absolute;
+  top: 10px;
+  left: -40px;
+  background-color: var(--color-danger);
+  color: #ffffff;
+  padding: 0.5rem 1rem;
+  transform: rotate(-45deg);
+  font-size: 0.9rem;
+  font-weight: bold;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
 .productImage {
   width: 100%;
-  height: 200px;
+  height: 220px;
   object-fit: cover;
-  border-radius: 8px;
+  transition: transform var(--transition-duration) ease;
 }
 
-.overlay {
+.productCard:hover .productImage {
+  transform: scale(1.05);
+}
+
+.actions {
   position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  gap: 1rem;
+}
+
+.icon {
+  color: #ffffff;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 0.6rem;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  transition: background-color var(--transition-duration) ease,
+    transform var(--transition-duration) ease;
+  cursor: pointer;
+}
+
+.icon:hover {
+  background-color: rgba(0, 0, 0, 0.7);
+  transform: scale(1.1);
+}
+
+.cardContent {
+  padding: 1.5rem;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.addToCartButton {
+  padding: 0.75rem;
+  background-color: var(--color-secondary);
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color var(--transition-duration) ease,
+    transform var(--transition-duration) ease;
+  text-align: center;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.addToCartButton:hover {
+  background-color: #218838;
+  transform: translateY(-2px);
+}
+
+.cartIcon {
+  font-size: 1.2rem;
+}
+
+/* ===========================
+   Loader & Eroare
+=========================== */
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+}
+
+.spinner {
+  border: 8px solid #f3f3f3;
+  border-top: 8px solid var(--color-primary);
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.error {
+  color: var(--color-danger);
+  text-align: center;
+  margin-top: 2rem;
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+/* ===========================
+   Modal
+=========================== */
+.modalBackdrop {
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.3);
-  opacity: 0;
+  background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: opacity 0.3s ease;
+  z-index: 1000;
 }
 
-.productCard:hover .overlay {
-  opacity: 1;
+.modal {
+  background-color: var(--color-sidebar);
+  padding: 2rem;
+  border-radius: var(--border-radius);
+  position: relative;
+  width: 90%;
+  max-width: 500px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
-.actions {
-  display: flex;
-  gap: 15px;
-}
-
-.icon {
-  color: white;
+.closeButton {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
   font-size: 1.5rem;
   cursor: pointer;
+  color: var(--color-text);
 }
 
-.cardContent {
-  padding: 15px;
+.modalImage {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  margin: 1rem 0;
 }
 
-.productName {
-  font-size: 1.1rem;
-  color: #333;
-  font-weight: bold;
-}
-
-.productPrice {
-  font-size: 1rem;
-  color: #27ae60;
-  margin-top: 5px;
-}
-
-.colorOptions {
+.modalActions {
   display: flex;
   justify-content: center;
-  gap: 5px;
-  margin-top: 10px;
+  gap: 1rem;
+  margin-top: 1.5rem;
 }
 
-.colorDot {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
+.modalButton {
+  padding: 0.6rem 1rem;
+  background-color: var(--color-primary);
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color var(--transition-duration) ease;
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+.modalButton:hover {
+  background-color: #005bb5;
+}
+
+/* ===========================
+   Responsivitate
+=========================== */
+
+/* Tablets și ecrane mai mici */
+@media (max-width: 1024px) {
+  .sidebar {
+    width: 180px;
+    padding: 1.5rem 1rem;
+  }
+
+  .productImage {
+    height: 200px;
+  }
+
+  .actions {
+    top: 5px;
+    right: 5px;
+    gap: 0.8rem;
+  }
 }
 
 @media (max-width: 768px) {
   .productContainer {
     flex-direction: column;
+    padding: 1rem;
   }
+
   .sidebar {
     width: 100%;
-    text-align: center;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+  }
+
+  .categoryList li {
+    font-size: 1rem;
+    padding-left: 0.8rem;
+  }
+
+  .productGrid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .productImage {
+    height: 180px;
+  }
+
+  .actions {
+    top: 5px;
+    right: 5px;
+    gap: 0.8rem;
+  }
+
+  .sorting {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .sorting label {
+    margin-bottom: 0.3rem;
   }
 }
 
-@media (max-width: 576px) {
-  .productCard {
-    padding: 10px;
+/* Smartphone-uri */
+@media (max-width: 480px) {
+  .categoryList li {
+    font-size: 0.95rem;
   }
+
+  .productGrid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 1rem;
+  }
+
   .productImage {
     height: 160px;
+  }
+
+  .actions {
+    top: 5px;
+    right: 5px;
+    gap: 0.6rem;
+  }
+
+  .productName {
+    font-size: 1.2rem;
+  }
+
+  .productPrice {
+    font-size: 1rem;
+  }
+
+  .productMaterials {
+    font-size: 0.9rem;
+  }
+
+  .addToCartButton {
+    font-size: 0.9rem;
+    padding: 0.6rem;
+  }
+
+  .sorting {
+    width: 100%;
+  }
+
+  .modal {
+    padding: 1.5rem;
+  }
+
+  .modalImage {
+    width: 80px;
+    height: 80px;
+  }
+
+  .modalButton {
+    padding: 0.5rem 0.8rem;
+    font-size: 0.9rem;
   }
 }

@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
-import { CartContext } from "../../context/CartContext";
 import { Link } from "react-router-dom";
+import { CartContext } from "../../context/CartContext";
 import styles from "./Cart.module.css";
 
 const Cart = () => {
@@ -27,7 +27,7 @@ const Cart = () => {
               className={styles.cartItemImage}
             />
             <div className={styles.cartItemDetails}>
-              <h3>{item.name}</h3>
+              <h3 className={styles.itemName}>{item.name}</h3>
               <p className={styles.cartItemPrice}>€{item.price.toFixed(2)}</p>
               <p className={styles.cartItemSize}>Größe: {item.size}</p>
               <p className={styles.cartItemQuantity}>Menge: {item.quantity}</p>

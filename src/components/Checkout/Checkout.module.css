@@ -1,43 +1,37 @@
-:root {
-  --primary-color: #007acc;
-  --hover-color: #005fa3;
-  --input-bg-color: #fff;
-  --input-border-color: #dcdcdc;
-  --input-focus-border-color: #007acc;
-  --button-bg-color: #007acc;
-  --button-text-color: #fff;
-  --button-hover-bg-color: #005fa3;
-  --shadow-color: rgba(0, 0, 0, 0.1);
-  --font-family: "Arial", sans-serif;
-  --font-size-base: 16px;
-  --font-size-lg: 18px;
-  --font-size-sm: 14px;
-  --padding-base: 12px;
-  --transition-speed: 0.3s;
-  --border-radius: 8px;
-}
-
-/* Containerul Checkout centrat pe pagină */
+/* ===========================
+       Layout
+       =========================== */
 .checkoutContainer {
   width: 100%;
   max-width: 600px;
-  margin: 120px auto;
-  padding: 25px;
-  background-color: #fff;
-  border-radius: var(--border-radius);
-  box-shadow: 0 6px 12px var(--shadow-color);
-  font-family: var(--font-family);
+  margin: 100px auto;
+  padding: 40px;
+  background-color: #f9f9f9;
+  border-radius: 12px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  font-family: "Helvetica Neue", sans-serif;
   text-align: center;
+  transition: box-shadow 0.3s ease;
 }
 
-/* Titlu */
+.checkoutContainer:hover {
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* ===========================
+             Titlu
+             =========================== */
 .checkoutContainer h2 {
-  font-size: var(--font-size-lg);
-  color: var(--primary-color);
-  margin-bottom: 30px;
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 20px;
+  font-weight: 600;
+  text-transform: uppercase;
 }
 
-/* Formularul */
+/* ===========================
+             Formular
+             =========================== */
 .checkoutForm {
   display: flex;
   flex-direction: column;
@@ -45,73 +39,85 @@
   align-items: center;
 }
 
-/* Inputuri */
+/* ===========================
+             Inputuri
+             =========================== */
 .checkoutForm input {
   width: 100%;
   max-width: 500px;
-  padding: var(--padding-base);
-  font-size: var(--font-size-base);
-  border: 1px solid var(--input-border-color);
-  border-radius: var(--border-radius);
-  background-color: var(--input-bg-color);
-  color: var(--text-color);
-  transition: border-color var(--transition-speed);
+  padding: 12px 20px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: #fff;
+  color: #333;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-/* Focus pe inputuri */
 .checkoutForm input:focus {
-  border-color: var(--input-focus-border-color);
+  border-color: #007acc;
   outline: none;
+  box-shadow: 0 0 5px rgba(0, 122, 204, 0.5);
 }
 
 /* Etichete pentru inputuri */
 .checkoutForm label {
-  font-size: var(--font-size-sm);
-  color: var(--primary-color);
+  font-size: 0.9rem;
+  color: #333;
   text-align: left;
   width: 100%;
-  margin-bottom: 5px;
+  margin-bottom: 8px;
+  font-weight: 500;
 }
 
-/* Butonul de trimitere */
+/* ===========================
+             Butonul de trimitere
+             =========================== */
 .checkoutForm button {
   width: 100%;
   max-width: 500px;
-  padding: 12px 24px;
-  background-color: var(--button-bg-color);
-  color: var(--button-text-color);
+  padding: 12px 20px;
+  background-color: #007acc;
+  color: #fff;
   border: none;
-  border-radius: var(--border-radius);
-  font-size: var(--font-size-lg);
+  border-radius: 6px;
+  font-size: 1.1rem;
   cursor: pointer;
-  transition: background-color var(--transition-speed),
-    transform var(--transition-speed);
-  margin-top: 20px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  margin-top: 25px;
 }
 
-/* Hover pe buton */
 .checkoutForm button:hover {
-  background-color: var(--button-hover-bg-color);
-  transform: scale(1.05);
+  background-color: #005fa3;
+  transform: translateY(-2px);
 }
 
 /* Mesajul când nu sunt produse în coș */
 .emptyCartMessage {
-  font-size: var(--font-size-lg);
-  color: var(--text-color);
+  font-size: 1.2rem;
+  color: #333;
   text-align: center;
   margin-top: 50px;
-  font-weight: bold;
+  font-weight: 600;
 }
 
-/* Media Queries pentru mobil */
+/* ===========================
+             Media Queries pentru mobil
+             =========================== */
 @media (max-width: 768px) {
   .checkoutForm input {
-    font-size: 14px;
+    font-size: 0.9rem;
     padding: 10px;
   }
 
   .checkoutForm button {
     width: 100%;
+    padding: 12px;
+  }
+
+  .checkoutContainer {
+    padding: 30px;
+    margin-top: 80px;
   }
 }

@@ -20,7 +20,10 @@ const App = () => {
       <main>
         <Routes>
           <Route path="/" element={<HomePage />} />
+          {/* Ruta pentru toate produsele */}
           <Route path="/products" element={<ProductsPage />} />
+          {/* Ruta pentru produse filtrate pe categorie */}
+          <Route path="/products/:category" element={<ProductsPage />} />
           <Route path="/product/:id" element={<ProductDetails />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/login" element={<LoginPage />} />
