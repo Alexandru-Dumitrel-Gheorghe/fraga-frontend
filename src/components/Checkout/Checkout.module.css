@@ -1,123 +1,244 @@
 /* ===========================
-       Layout
-       =========================== */
+   Global Styles
+=========================== */
+:root {
+  --color-primary: #0070f3;
+  --color-secondary: #1c1c1c;
+  --color-background: #ffffff;
+  --color-accent: #f5f5f5;
+  --color-text: #333333;
+  --color-border: #eaeaea;
+  --color-error: #ff4d4f;
+
+  --font-family: "Helvetica Neue", sans-serif;
+
+  --spacing-small: 8px;
+  --spacing-medium: 16px;
+  --spacing-large: 24px;
+  --spacing-xlarge: 32px;
+
+  --border-radius: 8px;
+}
+
+/* ===========================
+   Checkout Container
+=========================== */
 .checkoutContainer {
-  width: 100%;
-  max-width: 600px;
-  margin: 100px auto;
-  padding: 40px;
-  background-color: #f9f9f9;
-  border-radius: 12px;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-  font-family: "Helvetica Neue", sans-serif;
-  text-align: center;
-  transition: box-shadow 0.3s ease;
+  max-width: 1200px;
+  margin: var(--spacing-large) auto;
+  padding: var(--spacing-large);
+  font-family: var(--font-family);
+  color: var(--color-text);
+  margin-top: 120px;
 }
 
-.checkoutContainer:hover {
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
-}
-
-/* ===========================
-             Titlu
-             =========================== */
-.checkoutContainer h2 {
+.pageTitle {
   font-size: 2rem;
-  color: #333;
-  margin-bottom: 20px;
   font-weight: 600;
-  text-transform: uppercase;
+  margin-bottom: var(--spacing-large);
+  text-align: center;
 }
 
 /* ===========================
-             Formular
-             =========================== */
-.checkoutForm {
+   Checkout Content
+=========================== */
+.checkoutContent {
   display: flex;
-  flex-direction: column;
-  gap: 20px;
-  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--spacing-large);
+  justify-content: center;
 }
 
 /* ===========================
-             Inputuri
-             =========================== */
-.checkoutForm input {
-  width: 100%;
-  max-width: 500px;
-  padding: 12px 20px;
+   Order Summary
+=========================== */
+.orderSummary {
+  flex: 1 1 350px;
+  background-color: var(--color-accent);
+  padding: var(--spacing-medium);
+  border-radius: var(--border-radius);
+  border: 1px solid var(--color-border);
+}
+
+.orderSummary h3 {
+  font-size: 1.5rem;
+  margin-bottom: var(--spacing-medium);
+  text-align: center;
+}
+
+.cartItems {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.cartItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-medium);
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: var(--spacing-small);
+}
+
+.itemDetails {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-small);
+}
+
+.itemImage {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: var(--border-radius);
+}
+
+.itemName {
   font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  background-color: #fff;
-  color: #333;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.checkoutForm input:focus {
-  border-color: #007acc;
-  outline: none;
-  box-shadow: 0 0 5px rgba(0, 122, 204, 0.5);
-}
-
-/* Etichete pentru inputuri */
-.checkoutForm label {
-  font-size: 0.9rem;
-  color: #333;
-  text-align: left;
-  width: 100%;
-  margin-bottom: 8px;
   font-weight: 500;
 }
 
-/* ===========================
-             Butonul de trimitere
-             =========================== */
-.checkoutForm button {
-  width: 100%;
-  max-width: 500px;
-  padding: 12px 20px;
-  background-color: #007acc;
-  color: #fff;
-  border: none;
-  border-radius: 6px;
-  font-size: 1.1rem;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-  margin-top: 25px;
+.itemPrice {
+  font-size: 0.9rem;
+  color: var(--color-secondary);
 }
 
-.checkoutForm button:hover {
-  background-color: #005fa3;
-  transform: translateY(-2px);
+.itemTotalPrice {
+  font-size: 1rem;
+  font-weight: 500;
 }
 
-/* Mesajul când nu sunt produse în coș */
-.emptyCartMessage {
+.totalPrice {
+  display: flex;
+  justify-content: space-between;
   font-size: 1.2rem;
-  color: #333;
-  text-align: center;
-  margin-top: 50px;
   font-weight: 600;
+  margin-top: var(--spacing-medium);
+  padding-top: var(--spacing-medium);
+  border-top: 1px solid var(--color-border);
 }
 
 /* ===========================
-             Media Queries pentru mobil
-             =========================== */
+   Checkout Form
+=========================== */
+.checkoutForm {
+  flex: 1 1 350px;
+  background-color: var(--color-background);
+  padding: var(--spacing-medium);
+  border-radius: var(--border-radius);
+  border: 1px solid var(--color-border);
+}
+
+.checkoutForm h3 {
+  font-size: 1.5rem;
+  margin-bottom: var(--spacing-medium);
+  text-align: center;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: var(--spacing-medium);
+}
+
+.formGroupRow {
+  display: flex;
+  gap: var(--spacing-medium);
+}
+
+.formGroup label {
+  font-size: 0.9rem;
+  margin-bottom: var(--spacing-small);
+}
+
+.formGroup input {
+  padding: var(--spacing-small);
+  font-size: 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+}
+
+.formGroup input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px rgba(0, 112, 243, 0.2);
+}
+
+.submitButton {
+  width: 100%;
+  padding: var(--spacing-medium);
+  background-color: var(--color-primary);
+  color: #ffffff;
+  border: none;
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: var(--spacing-small);
+}
+
+.submitButton:hover {
+  background-color: #005bb5;
+}
+
+.submitButton:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+/* ===========================
+   Empty Cart Message
+=========================== */
+.emptyCart {
+  text-align: center;
+  padding: var(--spacing-large);
+}
+
+.emptyCartIcon {
+  font-size: 4rem;
+  color: var(--color-border);
+  margin-bottom: var(--spacing-medium);
+}
+
+.emptyCart h2 {
+  font-size: 2rem;
+  margin-bottom: var(--spacing-medium);
+}
+
+.shopLink {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+.shopLink:hover {
+  text-decoration: underline;
+}
+
+/* ===========================
+   Responsive Design
+=========================== */
 @media (max-width: 768px) {
-  .checkoutForm input {
-    font-size: 0.9rem;
-    padding: 10px;
+  .checkoutContent {
+    flex-direction: column;
   }
 
-  .checkoutForm button {
-    width: 100%;
-    padding: 12px;
+  .formGroupRow {
+    flex-direction: column;
   }
 
-  .checkoutContainer {
-    padding: 30px;
-    margin-top: 80px;
+  .itemDetails {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .cartItem {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .itemTotalPrice {
+    align-self: flex-end;
+    margin-top: var(--spacing-small);
   }
 }

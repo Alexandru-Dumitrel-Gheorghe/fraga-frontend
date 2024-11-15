@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import { AuthContext } from "../context/AuthContext";
 import styles from "./OrdersPage.module.css";
+import { Link } from "react-router-dom";
 
 const OrdersPage = () => {
   const [orders, setOrders] = useState([]);
@@ -63,7 +64,7 @@ const OrdersPage = () => {
               <div className={styles.orderDetails}>
                 <p className={styles.orderStatus}>Status: {order.status}</p>
                 <p className={styles.orderTotal}>
-                  Gesamtpreis: {order.totalPrice} €
+                  Gesamtpreis: {order.totalPrice.toFixed(2)} €
                 </p>
               </div>
               <h4 className={styles.orderItemsTitle}>Artikel:</h4>
@@ -71,17 +72,36 @@ const OrdersPage = () => {
                 {order.orderItems.map((item) => (
                   <li key={item._id} className={styles.orderProductItem}>
                     {item.product && item.product.name ? (
-                      <>
-                        <span className={styles.productName}>
-                          {item.product.name}
-                        </span>{" "}
-                        - Menge:{" "}
-                        <span className={styles.quantity}>{item.quantity}</span>{" "}
-                        - Preis:{" "}
-                        <span className={styles.price}>
-                          {item.product.price} €
-                        </span>
-                      </>
+                      <div className={styles.productDetails}>
+                        <div className={styles.productImageContainer}>
+                          <img
+                            src={item.product.image}
+                            alt={item.product.name}
+                            className={styles.productImage}
+                          />
+                        </div>
+                        <div className={styles.productInfo}>
+                          <Link
+                            to={`/products/${item.product._id}`}
+                            className={styles.productName}
+                          >
+                            {item.product.name}
+                          </Link>
+                          <p className={styles.productSize}>
+                            Größe: {item.size}
+                          </p>
+                          <p className={styles.productQuantity}>
+                            Menge: {item.quantity}
+                          </p>
+                          <p className={styles.productPrice}>
+                            Einzelpreis: {item.product.price.toFixed(2)} €
+                          </p>
+                          <p className={styles.productTotalPrice}>
+                            Gesamt:{" "}
+                            {(item.product.price * item.quantity).toFixed(2)} €
+                          </p>
+                        </div>
+                      </div>
                     ) : (
                       <span className={styles.unavailable}>
                         Produktdaten nicht verfügbar

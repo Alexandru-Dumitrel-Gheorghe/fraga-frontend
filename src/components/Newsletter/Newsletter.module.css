@@ -2,18 +2,18 @@
 .newsletter {
   background: linear-gradient(
     120deg,
-    #3498db,
-    #8e44ad
+    var(--color-primary),
+    var(--color-secondary)
   ); /* Fundal cu gradient */
-  padding: 80px 20px;
+  padding: var(--spacing-3xl) var(--spacing-md);
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
-  color: #fff;
-  border-radius: 15px;
-  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.1);
-  margin: 50px 0;
+  color: var(--color-surface);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-lg);
+  margin: var(--spacing-3xl) 0;
 }
 
 /* Conținutul secțiunii */
@@ -24,65 +24,68 @@
 
 /* Titlul secțiunii */
 .title {
-  font-size: 2.8rem;
-  font-weight: bold;
-  color: #ffffff;
-  margin-bottom: 20px;
+  font-size: var(--font-size-4xl);
+  font-weight: 700;
+  color: var(--color-surface);
+  margin-bottom: var(--spacing-md);
   text-transform: uppercase;
   letter-spacing: 1px;
+  font-family: var(--font-family-primary);
 }
 
 /* Descrierea secțiunii */
 .description {
-  font-size: 1.2rem;
-  color: #ecf0f1;
-  margin-bottom: 30px;
+  font-size: var(--font-size-lg);
+  color: wheat;
+  margin-bottom: var(--spacing-lg);
+  font-family: var(--font-family-secondary);
 }
 
 /* Formularul pentru newsletter */
 .form {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: var(--spacing-md);
   max-width: 600px;
   margin: 0 auto;
 }
 
 /* Input pentru email */
 .emailInput {
-  padding: 15px;
-  font-size: 1.2rem;
-  border: 2px solid #ffffff;
-  border-radius: 30px;
+  padding: var(--spacing-lg);
+  font-size: var(--font-size-base);
+  border: 2px solid var(--color-surface);
+  border-radius: var(--border-radius-full);
   width: 100%;
   margin: 0 auto;
-  transition: border-color 0.3s ease;
-  background: #ecf0f1;
-  color: #34495e;
+  transition: border-color var(--transition-duration);
+  background: var(--color-surface);
+  color: var(--color-text);
 }
 
 .emailInput:focus {
-  border-color: #8e44ad;
+  border-color: var(--color-secondary);
   outline: none;
 }
 
 /* Butonul de abonare */
 .subscribeButton {
-  background-color: #8e44ad;
-  color: white;
-  padding: 12px 20px; /* Am micșorat lățimea butonului */
-  font-size: 1.2rem;
-  font-weight: bold;
+  background-color: var(--color-secondary);
+  color: var(--color-surface);
+  padding: var(--spacing-md) var(--spacing-lg);
+  font-size: var(--font-size-base);
+  font-weight: 700;
   border: none;
-  border-radius: 30px;
+  border-radius: var(--border-radius-full);
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-  max-width: 300px; /* Limitez lățimea maximă a butonului */
-  margin: 0 auto; /* Centrez butonul */
+  transition: background-color var(--transition-duration),
+    transform var(--transition-duration);
+  max-width: 300px;
+  margin: 0 auto;
 }
 
 .subscribeButton:hover {
-  background-color: #6c3483;
+  background-color: var(--color-primary);
   transform: translateY(-3px);
 }
 
@@ -95,40 +98,40 @@
 /* Tablete și dispozitive mai mici */
 @media (max-width: 768px) {
   .title {
-    font-size: 2.2rem;
+    font-size: var(--font-size-3xl);
   }
 
   .description {
-    font-size: 1.1rem;
+    font-size: var(--font-size-base);
   }
 
   .form {
-    gap: 12px;
+    gap: var(--spacing-sm);
   }
 
   .emailInput {
-    padding: 12px;
+    padding: var(--spacing-md);
   }
 
   .subscribeButton {
-    font-size: 1.1rem;
-    padding: 14px 22px;
+    font-size: var(--font-size-sm);
+    padding: var(--spacing-md) var(--spacing-lg);
   }
 }
 
 /* Desktopuri mari */
 @media (min-width: 992px) {
   .content {
-    padding: 40px 60px;
+    padding: var(--spacing-xl) var(--spacing-2xl);
   }
 
   .emailInput {
-    font-size: 1.3rem;
-    padding: 16px;
+    font-size: var(--font-size-lg);
+    padding: var(--spacing-lg);
   }
 
   .subscribeButton {
-    font-size: 1.3rem;
-    padding: 16px 30px;
+    font-size: var(--font-size-lg);
+    padding: var(--spacing-lg) var(--spacing-xl);
   }
 }

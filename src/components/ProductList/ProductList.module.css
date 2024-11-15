@@ -1,31 +1,26 @@
 /* ===========================
-   Variabile Globale
+   Global Variables
 =========================== */
 :root {
-  /* Culori */
-  --color-background: #f9f9f9;
-  --color-sidebar: #ffffff;
+  --color-background: #ffffff;
   --color-primary: #0070f3;
   --color-secondary: #28a745;
-  --color-danger: #ff4757;
   --color-text: #333333;
-  --color-text-secondary: #555555;
   --color-border: #eaeaea;
-  --color-shadow: rgba(0, 0, 0, 0.1);
-  --color-shadow-hover: rgba(0, 0, 0, 0.15);
+  --color-placeholder: #888888;
+  --color-error: #dc3545;
+  --color-loading: #0070f3;
 
-  /* Spațiere */
-  --spacing-padding: 2rem;
-  --spacing-gap: 2rem;
+  --spacing-small: 8px;
+  --spacing-medium: 16px;
+  --spacing-large: 24px;
 
-  /* Altele */
-  --border-radius: 12px;
-  --transition-duration: 0.3s;
-  --font-primary: "Arial, sans-serif";
+  --border-radius: 8px;
+  --transition-duration: 0.2s;
 }
 
 /* ===========================
-   Reset și Tipografie
+   Reset and Typography
 =========================== */
 * {
   margin: 0;
@@ -34,268 +29,139 @@
 }
 
 body {
-  font-family: var(--font-primary);
-  background-color: var(--color-background);
+  font-family: Arial, sans-serif;
   color: var(--color-text);
-  line-height: 1.6;
+  background-color: var(--color-background);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
 }
 
 /* ===========================
-   Layout Principal
+   Main Layout
 =========================== */
 .productContainer {
+  padding: var(--spacing-large);
+}
+
+.toolbar {
   display: flex;
-  padding: var(--spacing-padding);
-  gap: var(--spacing-gap);
   flex-wrap: wrap;
-  background-color: var(--color-background);
+  gap: var(--spacing-medium);
+  margin-bottom: var(--spacing-large);
 }
 
-.sidebar {
-  width: 220px;
-  background-color: var(--color-sidebar);
-  padding: 2rem 1.5rem;
+.categorySelect,
+.sortSelect,
+.searchInput {
+  padding: var(--spacing-small);
+  border: 1px solid var(--color-border);
   border-radius: var(--border-radius);
-  box-shadow: 0 4px 12px var(--color-shadow);
-  transition: box-shadow var(--transition-duration) ease;
-}
-
-.sidebar:hover {
-  box-shadow: 0 6px 16px var(--color-shadow-hover);
-}
-
-.mainContent {
+  font-size: 1rem;
   flex: 1;
-  display: flex;
-  flex-direction: column;
+  min-width: 150px;
 }
 
-/* ===========================
-   Tipografie
-=========================== */
-.sidebar h3 {
-  margin-bottom: 1.5rem;
-  color: var(--color-text);
-  font-size: 1.6rem;
-  border-bottom: 2px solid #e0e0e0;
-  padding-bottom: 0.5rem;
+.searchInput {
+  flex: 2;
 }
 
-.productName {
-  font-size: 1.4rem;
-  margin-bottom: 0.75rem;
-  color: var(--color-text);
-  transition: color var(--transition-duration) ease;
-}
-
-.productName:hover {
-  color: var(--color-primary);
-}
-
-.productPrice {
-  font-size: 1.2rem;
-  color: var(--color-primary);
-  margin-bottom: 0.5rem;
-}
-
-.productMaterials {
-  font-size: 1rem;
-  color: #666666;
-  margin-bottom: 1rem;
-}
-
-/* ===========================
-   Liste & Navigare
-=========================== */
-.categoryList {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.categoryList li {
-  position: relative;
-  padding: 0.8rem 0;
-  padding-left: 1.5rem;
-  cursor: pointer;
-  color: var(--color-text-secondary);
-  font-size: 1.1rem;
-  border-radius: 8px;
-  transition: color var(--transition-duration) ease,
-    transform var(--transition-duration) ease,
-    background-color var(--transition-duration) ease;
-}
-
-.categoryList li::before {
-  content: "•";
-  position: absolute;
-  left: 0;
-  color: var(--color-primary);
-}
-
-.categoryList li:hover,
-.categoryList li.active {
-  color: var(--color-primary);
-  font-weight: bold;
-  background-color: #e6f0ff;
-  transform: translateX(5px);
-}
-
-/* ===========================
-   Sortare
-=========================== */
-.sorting {
-  display: flex;
-  align-items: center;
-  margin-bottom: 1.5rem;
-  gap: 0.5rem;
-}
-
-.sorting label {
-  font-size: 1rem;
-  color: var(--color-text);
-}
-
-.sorting select {
-  padding: 0.5rem 1rem;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  font-size: 1rem;
-  transition: border-color var(--transition-duration) ease;
-}
-
-.sorting select:hover,
-.sorting select:focus {
-  border-color: var(--color-primary);
-  outline: none;
-}
-
-/* ===========================
-   Grid de Produse
-=========================== */
 .productGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: var(--spacing-large);
 }
 
 .productCard {
-  position: relative;
-  background-color: var(--color-sidebar);
   border: 1px solid var(--color-border);
   border-radius: var(--border-radius);
   overflow: hidden;
-  transition: transform var(--transition-duration) ease,
-    box-shadow var(--transition-duration) ease;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-}
-
-.productCard:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
-}
-
-.badge {
-  position: absolute;
-  top: 10px;
-  left: -40px;
-  background-color: var(--color-danger);
-  color: #ffffff;
-  padding: 0.5rem 1rem;
-  transform: rotate(-45deg);
-  font-size: 0.9rem;
-  font-weight: bold;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-}
-
-.productImage {
-  width: 100%;
-  height: 220px;
-  object-fit: cover;
-  transition: transform var(--transition-duration) ease;
-}
-
-.productCard:hover .productImage {
-  transform: scale(1.05);
-}
-
-.actions {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  display: flex;
-  gap: 1rem;
-}
-
-.icon {
-  color: #ffffff;
-  background-color: rgba(0, 0, 0, 0.5);
-  padding: 0.6rem;
-  border-radius: 50%;
-  font-size: 1.2rem;
-  transition: background-color var(--transition-duration) ease,
-    transform var(--transition-duration) ease;
-  cursor: pointer;
-}
-
-.icon:hover {
-  background-color: rgba(0, 0, 0, 0.7);
-  transform: scale(1.1);
-}
-
-.cardContent {
-  padding: 1.5rem;
-  flex-grow: 1;
+  background-color: #fafafa;
+  transition: box-shadow var(--transition-duration);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 
+.productCard:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.productImage {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.cardContent {
+  padding: var(--spacing-medium);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.productName {
+  font-size: 1.1rem;
+  margin-bottom: var(--spacing-small);
+  text-align: center;
+  color: var(--color-text);
+}
+
+.productPrice {
+  font-size: 1rem;
+  color: var(--color-primary);
+  margin-bottom: var(--spacing-medium);
+}
+
 .addToCartButton {
-  padding: 0.75rem;
+  padding: var(--spacing-small);
   background-color: var(--color-secondary);
   color: #ffffff;
   border: none;
-  border-radius: 8px;
+  border-radius: 50%;
   cursor: pointer;
-  transition: background-color var(--transition-duration) ease,
-    transform var(--transition-duration) ease;
-  text-align: center;
-  font-size: 1rem;
+  font-size: 1.2rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
+  transition: background-color var(--transition-duration),
+    transform var(--transition-duration);
+  width: 40px;
+  height: 40px;
 }
 
 .addToCartButton:hover {
   background-color: #218838;
-  transform: translateY(-2px);
+  transform: scale(1.05);
 }
 
-.cartIcon {
+.noResults {
+  text-align: center;
   font-size: 1.2rem;
+  color: var(--color-placeholder);
+  margin-top: var(--spacing-large);
 }
 
 /* ===========================
-   Loader & Eroare
+   Loading Spinner
 =========================== */
-.loader {
+.loadingSpinner {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  height: 80vh;
+  margin-top: var(--spacing-large);
 }
 
 .spinner {
-  border: 8px solid #f3f3f3;
-  border-top: 8px solid var(--color-primary);
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid var(--color-loading);
   border-radius: 50%;
-  width: 70px;
-  height: 70px;
+  width: 40px;
+  height: 40px;
   animation: spin 1s linear infinite;
+  margin-bottom: var(--spacing-small);
 }
 
 @keyframes spin {
@@ -304,200 +170,83 @@ body {
   }
 }
 
-.error {
-  color: var(--color-danger);
+/* ===========================
+   Error Message
+=========================== */
+.errorMessage {
   text-align: center;
-  margin-top: 2rem;
-  font-size: 1.3rem;
-  font-weight: bold;
+  font-size: 1.2rem;
+  color: var(--color-error);
+  margin-top: var(--spacing-large);
 }
 
 /* ===========================
-   Modal
+   Pagination
 =========================== */
-.modalBackdrop {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+.pagination {
   display: flex;
+  list-style: none;
   justify-content: center;
-  align-items: center;
-  z-index: 1000;
+  margin-top: var(--spacing-large);
+  gap: 8px;
 }
 
-.modal {
-  background-color: var(--color-sidebar);
-  padding: 2rem;
+.pageItem {
+  border: 1px solid var(--color-border);
   border-radius: var(--border-radius);
-  position: relative;
-  width: 90%;
-  max-width: 500px;
-  text-align: center;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: background-color var(--transition-duration);
 }
 
-.closeButton {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  cursor: pointer;
+.pageLink {
   color: var(--color-text);
 }
 
-.modalImage {
-  width: 100px;
-  height: 100px;
-  object-fit: cover;
-  margin: 1rem 0;
+.pageItem:hover {
+  background-color: var(--color-border);
 }
 
-.modalActions {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  margin-top: 1.5rem;
-}
-
-.modalButton {
-  padding: 0.6rem 1rem;
+.active {
   background-color: var(--color-primary);
   color: #ffffff;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color var(--transition-duration) ease;
-  text-decoration: none;
-  font-size: 1rem;
-}
-
-.modalButton:hover {
-  background-color: #005bb5;
-}
-
-/* ===========================
-   Responsivitate
-=========================== */
-
-/* Tablets și ecrane mai mici */
-@media (max-width: 1024px) {
-  .sidebar {
-    width: 180px;
-    padding: 1.5rem 1rem;
-  }
-
-  .productImage {
-    height: 200px;
-  }
-
-  .actions {
-    top: 5px;
-    right: 5px;
-    gap: 0.8rem;
-  }
+  border-color: var(--color-primary);
 }
 
 @media (max-width: 768px) {
   .productContainer {
+    padding: var(--spacing-medium);
+  }
+
+  .toolbar {
     flex-direction: column;
-    padding: 1rem;
-  }
-
-  .sidebar {
-    width: 100%;
-    margin-bottom: 1.5rem;
-    padding: 1rem;
-  }
-
-  .categoryList li {
-    font-size: 1rem;
-    padding-left: 0.8rem;
-  }
-
-  .productGrid {
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 1.5rem;
-  }
-
-  .productImage {
-    height: 180px;
-  }
-
-  .actions {
-    top: 5px;
-    right: 5px;
-    gap: 0.8rem;
-  }
-
-  .sorting {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.5rem;
-  }
-
-  .sorting label {
-    margin-bottom: 0.3rem;
-  }
-}
-
-/* Smartphone-uri */
-@media (max-width: 480px) {
-  .categoryList li {
-    font-size: 0.95rem;
+    gap: var(--spacing-small);
   }
 
   .productGrid {
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    gap: 1rem;
+    gap: var(--spacing-medium);
   }
 
   .productImage {
-    height: 160px;
+    height: 150px;
   }
 
-  .actions {
-    top: 5px;
-    right: 5px;
-    gap: 0.6rem;
+  .cardContent {
+    padding: var(--spacing-small);
   }
 
   .productName {
-    font-size: 1.2rem;
-  }
-
-  .productPrice {
     font-size: 1rem;
   }
 
-  .productMaterials {
+  .productPrice {
     font-size: 0.9rem;
   }
 
   .addToCartButton {
-    font-size: 0.9rem;
-    padding: 0.6rem;
-  }
-
-  .sorting {
-    width: 100%;
-  }
-
-  .modal {
-    padding: 1.5rem;
-  }
-
-  .modalImage {
-    width: 80px;
-    height: 80px;
-  }
-
-  .modalButton {
-    padding: 0.5rem 0.8rem;
-    font-size: 0.9rem;
+    width: 35px;
+    height: 35px;
+    font-size: 1rem;
   }
 }

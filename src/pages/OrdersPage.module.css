@@ -1,33 +1,28 @@
-/* Container principal pentru pagina de comenzi */
+/* ===========================
+   Container Principal
+=========================== */
 .ordersContainer {
   max-width: 1200px;
   margin: 120px auto;
   padding: 30px 20px;
   background-color: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  font-family: "Montserrat", sans-serif;
 }
 
-/* Titlul paginii */
+/* ===========================
+   Titlu Pagina
+=========================== */
 .title {
   text-align: center;
   font-size: 2.5rem;
   margin-bottom: 40px;
-  color: #2c3e50;
+  color: #1e3a8a;
   font-weight: bold;
 }
 
-/* Stilizare pentru mesajul de încărcare */
-.loading {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 200px;
-  color: #3498db;
-  font-size: 1.5rem;
-}
-
-/* Spinner pentru încărcare */
+/* ===========================
+   Spinner Încărcare
+=========================== */
 .spinner {
   width: 60px;
   height: 60px;
@@ -44,20 +39,24 @@
   }
 }
 
-/* Lista de comenzi */
+/* ===========================
+   Lista de Comenzi
+=========================== */
 .orderList {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-/* Fiecare element al comenzii */
+/* ===========================
+   Element Comandă
+=========================== */
 .orderItem {
   background-color: #f8f9fa;
   padding: 25px;
   margin-bottom: 25px;
-  border-left: 5px solid #3498db;
-  border-radius: 5px;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
   transition: transform 0.3s, box-shadow 0.3s;
 }
 
@@ -66,7 +65,9 @@
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
 }
 
-/* Header-ul comenzii (ID și data) */
+/* ===========================
+   Header Comandă
+=========================== */
 .orderHeader {
   display: flex;
   justify-content: space-between;
@@ -78,7 +79,6 @@
   font-size: 1.3rem;
   color: #34495e;
   font-weight: 600;
-  word-break: break-all; /* Permite spargerea liniei la ID-uri lungi */
 }
 
 .orderDate {
@@ -86,7 +86,9 @@
   color: #7f8c8d;
 }
 
-/* Detaliile comenzii (status și total) */
+/* ===========================
+   Detalii Comandă
+=========================== */
 .orderDetails {
   display: flex;
   justify-content: space-between;
@@ -103,7 +105,9 @@
   color: #e67e22;
 }
 
-/* Titlul listei de articole */
+/* ===========================
+   Titlu Articole
+=========================== */
 .orderItemsTitle {
   font-size: 1.2rem;
   margin-bottom: 10px;
@@ -111,37 +115,71 @@
   font-weight: 500;
 }
 
-/* Lista de articole din comandă */
+/* ===========================
+   Lista de Articole
+=========================== */
 .orderItemsList {
-  list-style: disc;
-  padding-left: 20px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 .orderProductItem {
-  margin-bottom: 8px;
+  display: flex;
+  gap: 20px;
+  padding: 15px 0;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.productDetails {
+  display: flex;
+  gap: 20px;
+}
+
+.productImageContainer {
+  flex-shrink: 0;
+}
+
+.productImage {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.productInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.productName {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #1e3a8a;
+  text-decoration: none;
+}
+
+.productName:hover {
+  text-decoration: underline;
+}
+
+.productSize,
+.productQuantity,
+.productPrice,
+.productTotalPrice {
+  font-size: 0.95rem;
   color: #555555;
 }
 
-/* Numele produsului */
-.productName {
-  font-weight: 500;
-  color: #2c3e50;
-}
-
-/* Cantitatea și prețul */
-.quantity,
-.price {
-  font-weight: 400;
-  color: #34495e;
-}
-
-/* Mesaj pentru produse indisponibile */
 .unavailable {
   color: #e74c3c;
   font-style: italic;
 }
 
-/* Mesaj când nu există comenzi */
+/* ===========================
+   Mesaj Fără Comenzi
+=========================== */
 .noOrders {
   text-align: center;
   font-size: 1.3rem;
@@ -149,7 +187,9 @@
   margin-top: 50px;
 }
 
-/* Media Queries pentru responsivitate */
+/* ===========================
+   Responsivitate
+=========================== */
 @media (max-width: 992px) {
   .ordersContainer {
     padding: 25px 15px;
@@ -180,6 +220,19 @@
 
   .orderItemsTitle {
     font-size: 1.1rem;
+  }
+
+  .orderProductItem {
+    flex-direction: column;
+  }
+
+  .productDetails {
+    flex-direction: row;
+  }
+
+  .productImage {
+    width: 80px;
+    height: 80px;
   }
 }
 
@@ -219,7 +272,12 @@
   }
 
   .orderProductItem {
-    font-size: 0.95rem;
+    padding: 10px 0;
+  }
+
+  .productImage {
+    width: 70px;
+    height: 70px;
   }
 }
 
@@ -234,5 +292,14 @@
 
   .orderDetails {
     align-items: flex-start;
+  }
+
+  .productDetails {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .productInfo {
+    gap: 3px;
   }
 }

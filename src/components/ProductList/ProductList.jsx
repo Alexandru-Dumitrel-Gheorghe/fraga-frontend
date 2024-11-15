@@ -1,216 +1,275 @@
-// src/components/ProductList/ProductList.js
-
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState, useContext, useCallback } from "react";
 import axios from "axios";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import styles from "./ProductList.module.css";
-import { FaHeart, FaEye, FaShoppingCart, FaTimes } from "react-icons/fa";
+import { FaShoppingCart } from "react-icons/fa";
 import { CartContext } from "../../context/CartContext";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { slugify } from "../../utils/slugify";
+import ReactPaginate from "react-paginate";
+
+// Slugify function
+const slugify = (text) => {
+  return text
+    .toString()
+    .toLowerCase()
+    .replace(/\s+/g, "-") // Replace spaces with -
+    .replace(/[^\w-]+/g, "") // Remove all non-word chars
+    .replace(/--+/g, "-") // Replace multiple - with single -
+    .trim();
+};
 
 const ProductList = () => {
-  const { category } = useParams(); // Retrieve category from URL parameters
+  const { category } = useParams();
   const [products, setProducts] = useState([]);
-  const [filteredProducts, setFilteredProducts] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const [selectedCategory, setSelectedCategory] = useState(category || "all");
-  const [sortOption, setSortOption] = useState("default");
+  const [displayedProducts, setDisplayedProducts] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState("Alle");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [sortOption, setSortOption] = useState("Relevanz");
   const { addToCart } = useContext(CartContext);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [modalProduct, setModalProduct] = useState(null);
+  const navigate = useNavigate();
 
+  // States for loading and error
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  // States for pagination
+  const [currentPage, setCurrentPage] = useState(0);
+  const itemsPerPage = 12;
+
+  // Fetch products on initialization
   useEffect(() => {
     const fetchProducts = async () => {
+      setIsLoading(true);
+      setError(null);
       try {
         const res = await axios.get("http://localhost:5000/api/products");
         setProducts(res.data);
-        setFilteredProducts(res.data);
+
+        // Extract unique categories
+        const uniqueCategories = [
+          "Alle",
+          ...new Set(res.data.map((product) => product.category)),
+        ];
+        setCategories(uniqueCategories);
       } catch (err) {
         console.error("Fehler beim Abrufen der Produkte:", err);
-        setError("Fehler beim Laden der Produkte.");
+        setError(
+          "Es gab ein Problem beim Laden der Produkte. Bitte versuche es später erneut."
+        );
       } finally {
-        setLoading(false);
+        setIsLoading(false);
       }
     };
     fetchProducts();
   }, []);
 
+  // Synchronize selectedCategory with URL parameter
   useEffect(() => {
-    setSelectedCategory(category || "all");
-  }, [category]);
+    if (category) {
+      // Find the matching category from the list
+      const matchingCategory = categories.find(
+        (cat) => slugify(cat) === category.toLowerCase()
+      );
+      setSelectedCategory(matchingCategory || "Alle");
+    } else {
+      setSelectedCategory("Alle");
+    }
+  }, [category, categories]);
 
-  useEffect(() => {
-    let updatedProducts =
-      selectedCategory === "all"
-        ? [...products]
-        : products.filter(
-            (product) => slugify(product.category) === selectedCategory
-          );
+  // Filter and sort function
+  const filterAndSortProducts = useCallback(() => {
+    let filtered = [...products];
 
+    // Filter by category
+    if (selectedCategory !== "Alle") {
+      filtered = filtered.filter(
+        (product) => slugify(product.category) === slugify(selectedCategory)
+      );
+    }
+
+    // Filter by search query
+    if (searchQuery.trim() !== "") {
+      filtered = filtered.filter((product) =>
+        product.name.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+    }
+
+    // Sort products
     switch (sortOption) {
-      case "price-asc":
-        updatedProducts.sort((a, b) => a.price - b.price);
+      case "Preis: Niedrig zu Hoch":
+        filtered.sort((a, b) => a.price - b.price);
         break;
-      case "price-desc":
-        updatedProducts.sort((a, b) => b.price - a.price);
+      case "Preis: Hoch zu Niedrig":
+        filtered.sort((a, b) => b.price - a.price);
+        break;
+      case "Name: A-Z":
+        filtered.sort((a, b) => a.name.localeCompare(b.name));
+        break;
+      case "Name: Z-A":
+        filtered.sort((a, b) => b.name.localeCompare(a.name));
         break;
       default:
         break;
     }
 
-    setFilteredProducts(updatedProducts);
-  }, [selectedCategory, sortOption, products]);
+    setDisplayedProducts(filtered);
+  }, [products, selectedCategory, searchQuery, sortOption]);
 
+  // Apply filter and sort when dependencies change
+  useEffect(() => {
+    filterAndSortProducts();
+    setCurrentPage(0); // Reset to the first page when changes occur
+  }, [filterAndSortProducts]);
+
+  // Handle category selection
+  const handleCategoryChange = (e) => {
+    const selectedCat = e.target.value;
+    setSelectedCategory(selectedCat);
+    if (selectedCat === "Alle") {
+      navigate("/products");
+    } else {
+      navigate(`/products/${slugify(selectedCat)}`);
+    }
+  };
+
+  // Handle search query
+  const handleSearchChange = (e) => {
+    setSearchQuery(e.target.value);
+  };
+
+  // Handle adding to cart
   const handleAddToCart = (product) => {
     addToCart(product);
-    setModalProduct(product);
-    setIsModalOpen(true);
-    toast.success(`Produkt "${product.name}" wurde zum Warenkorb hinzugefügt!`);
+    toast.success(`${product.name} wurde zum Warenkorb hinzugefügt!`, {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+    });
   };
 
-  const closeModal = () => {
-    setIsModalOpen(false);
-    setModalProduct(null);
+  // Handle page clicks
+  const handlePageClick = (data) => {
+    setCurrentPage(data.selected);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  if (loading) {
-    return (
-      <div className={styles.loader}>
-        <div className={styles.spinner}></div>
-      </div>
-    );
-  }
-
-  if (error) {
-    return <div className={styles.error}>{error}</div>;
-  }
+  // Calculate products for the current page
+  const offset = currentPage * itemsPerPage;
+  const currentPageData = displayedProducts.slice(
+    offset,
+    offset + itemsPerPage
+  );
+  const pageCount = Math.ceil(displayedProducts.length / itemsPerPage);
 
   return (
     <div className={styles.productContainer}>
-      <aside className={styles.sidebar}>
-        <h3>Kategorien</h3>
-        <ul className={styles.categoryList}>
-          <li
-            className={selectedCategory === "all" ? styles.active : ""}
-            onClick={() => setSelectedCategory("all")}
-          >
-            Alle Kategorien
-          </li>
-          <li
-            className={selectedCategory === "taschen" ? styles.active : ""}
-            onClick={() => setSelectedCategory("taschen")}
-          >
-            Taschen
-          </li>
-          <li
-            className={
-              selectedCategory === "handgefertigte-kleider" ? styles.active : ""
-            }
-            onClick={() => setSelectedCategory("handgefertigte-kleider")}
-          >
-            Handgefertigte Kleider
-          </li>
-          <li
-            className={selectedCategory === "pullover" ? styles.active : ""}
-            onClick={() => setSelectedCategory("pullover")}
-          >
-            Pullover
-          </li>
-          <li
-            className={
-              selectedCategory === "handgemacht-cardigans" ? styles.active : ""
-            }
-            onClick={() => setSelectedCategory("handgemacht-cardigans")}
-          >
-            Handgemachte Cardigans
-          </li>
-          <li
-            className={
-              selectedCategory === "genaehte-kleider" ? styles.active : ""
-            }
-            onClick={() => setSelectedCategory("genaehte-kleider")}
-          >
-            Genähte Kleider
-          </li>
-        </ul>
-      </aside>
-      <div className={styles.mainContent}>
-        <div className={styles.sorting}>
-          <label htmlFor="sort">Sortieren:</label>
-          <select
-            id="sort"
-            value={sortOption}
-            onChange={(e) => setSortOption(e.target.value)}
-          >
-            <option value="default">Standard</option>
-            <option value="price-asc">Preis: Aufsteigend</option>
-            <option value="price-desc">Preis: Absteigend</option>
-          </select>
-        </div>
-
-        <div className={styles.productGrid}>
-          {filteredProducts.map((product) => (
-            <div key={product._id} className={styles.productCard}>
-              {product.isNew && <span className={styles.badge}>Neu</span>}
-              <img
-                src={product.image}
-                alt={product.name}
-                className={styles.productImage}
-                loading="lazy"
-              />
-              <div className={styles.actions}>
-                <FaHeart
-                  className={styles.icon}
-                  title="Zu Favoriten hinzufügen"
-                  aria-label="Zu Favoriten hinzufügen"
-                />
-                <Link
-                  to={`/product/${product._id}`}
-                  className={styles.icon}
-                  title="Details ansehen"
-                  aria-label="Details ansehen"
-                >
-                  <FaEye />
-                </Link>
-              </div>
-              <div className={styles.cardContent}>
-                <h3 className={styles.productName}>{product.name}</h3>
-                <p className={styles.productPrice}>{product.price} €</p>
-                <button
-                  className={styles.addToCartButton}
-                  onClick={() => handleAddToCart(product)}
-                >
-                  <FaShoppingCart className={styles.cartIcon} /> In den
-                  Warenkorb
-                </button>
-              </div>
-            </div>
+      <ToastContainer />
+      <div className={styles.toolbar}>
+        <select
+          className={styles.categorySelect}
+          value={selectedCategory}
+          onChange={handleCategoryChange}
+          aria-label="Kategorie auswählen"
+        >
+          {categories.map((cat) => (
+            <option key={cat} value={cat}>
+              {cat}
+            </option>
           ))}
-        </div>
+        </select>
+
+        <input
+          type="text"
+          className={styles.searchInput}
+          placeholder="Produkte suchen..."
+          value={searchQuery}
+          onChange={handleSearchChange}
+          aria-label="Produkte suchen"
+        />
+
+        <select
+          className={styles.sortSelect}
+          value={sortOption}
+          onChange={(e) => setSortOption(e.target.value)}
+          aria-label="Produkte sortieren"
+        >
+          <option>Relevanz</option>
+          <option>Preis: Niedrig zu Hoch</option>
+          <option>Preis: Hoch zu Niedrig</option>
+          <option>Name: A-Z</option>
+          <option>Name: Z-A</option>
+        </select>
       </div>
-      {isModalOpen && modalProduct && (
-        <div className={styles.modalBackdrop} onClick={closeModal}>
-          <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
-            <button className={styles.closeButton} onClick={closeModal}>
-              <FaTimes />
-            </button>
-            <h2>Erfolgreich hinzugefügt!</h2>
-            <img
-              src={modalProduct.image}
-              alt={modalProduct.name}
-              className={styles.modalImage}
-            />
-            <p>
-              <strong>{modalProduct.name}</strong> wurde zum Warenkorb
-              hinzugefügt.
-            </p>
-          </div>
+
+      {isLoading ? (
+        <div className={styles.loadingSpinner}>
+          <div className={styles.spinner}></div>
+          <p>Produkte werden geladen...</p>
         </div>
+      ) : error ? (
+        <div className={styles.errorMessage}>{error}</div>
+      ) : (
+        <>
+          <div className={styles.productGrid}>
+            {currentPageData.length > 0 ? (
+              currentPageData.map((product) => (
+                <div key={product._id} className={styles.productCard}>
+                  <Link to={`/product/${product._id}`}>
+                    <img
+                      src={product.image}
+                      alt={product.name}
+                      className={styles.productImage}
+                      loading="lazy"
+                    />
+                  </Link>
+                  <div className={styles.cardContent}>
+                    <Link to={`/product/${product._id}`}>
+                      <h3 className={styles.productName}>{product.name}</h3>
+                    </Link>
+                    <p className={styles.productPrice}>{product.price} €</p>
+                    <button
+                      className={styles.addToCartButton}
+                      onClick={() => handleAddToCart(product)}
+                      aria-label="Zum Warenkorb hinzufügen"
+                    >
+                      <FaShoppingCart />
+                    </button>
+                  </div>
+                </div>
+              ))
+            ) : (
+              <div className={styles.noResults}>Keine Produkte gefunden.</div>
+            )}
+          </div>
+
+          {pageCount > 1 && (
+            <ReactPaginate
+              previousLabel={"←"}
+              nextLabel={"→"}
+              breakLabel={"..."}
+              pageCount={pageCount}
+              marginPagesDisplayed={2}
+              pageRangeDisplayed={3}
+              onPageChange={handlePageClick}
+              containerClassName={styles.pagination}
+              pageClassName={styles.pageItem}
+              pageLinkClassName={styles.pageLink}
+              previousClassName={styles.pageItem}
+              previousLinkClassName={styles.pageLink}
+              nextClassName={styles.pageItem}
+              nextLinkClassName={styles.pageLink}
+              breakClassName={styles.pageItem}
+              breakLinkClassName={styles.pageLink}
+              activeClassName={styles.active}
+            />
+          )}
+        </>
       )}
-      <ToastContainer position="top-right" autoClose={3000} />
     </div>
   );
 };

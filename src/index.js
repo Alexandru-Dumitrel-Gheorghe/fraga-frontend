@@ -5,6 +5,7 @@ import App from "./App";
 import { AuthProvider } from "./context/AuthContext";
 import { CartProvider } from "./context/CartContext";
 import "./index.css";
+import "./styles/variables.css"; // Calea către fișierul CSS
 
 const container = document.getElementById("root");
 const root = createRoot(container);

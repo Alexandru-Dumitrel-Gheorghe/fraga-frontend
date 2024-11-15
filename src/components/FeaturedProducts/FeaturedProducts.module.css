@@ -1,29 +1,40 @@
-/* FeaturedProducts.module.css */
-
 .featured {
-  padding: 60px 20px;
-  background-color: #f8f9fa;
+  padding: var(--spacing-2xl) var(--spacing-md);
+  background-color: var(--color-background);
   text-align: center;
 }
 
 .title {
-  font-size: 2.5rem;
-  font-weight: bold;
-  color: #333;
-  margin-bottom: 40px;
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-5xl);
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: var(--spacing-lg);
+  position: relative;
+}
+
+.title::after {
+  content: "";
+  width: 80px;
+  height: 4px;
+  background-color: var(--color-accent);
+  display: block;
+  margin: var(--spacing-xs) auto 0;
+  border-radius: var(--border-radius-sm);
 }
 
 .description {
-  font-size: 1.2rem;
-  color: #666;
-  margin-bottom: 40px;
+  font-family: var(--font-family-secondary);
+  font-size: var(--font-size-lg);
+  color: var(--color-text-light);
+  margin-bottom: var(--spacing-lg);
   max-width: 600px;
   margin: 0 auto;
 }
 
 .productGrid {
   display: grid;
-  gap: 30px; /* Spațiu mai mare între carduri */
+  gap: var(--spacing-lg);
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   max-width: 1200px;
   margin: 0 auto;
@@ -31,32 +42,34 @@
 
 .productCard {
   position: relative;
-  background-color: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  background-color: var(--color-surface);
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-sm);
   overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform var(--transition-duration-base)
+      var(--transition-ease-in-out),
+    box-shadow var(--transition-duration-base) var(--transition-ease-in-out);
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 40px;
+  margin-top: var(--spacing-lg);
 }
 
 .productCard:hover {
   transform: scale(1.05);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  box-shadow: var(--shadow-lg);
 }
 
 /* Badge pentru produse noi */
 .badge {
   position: absolute;
-  top: 10px;
-  left: 10px;
-  background-color: #e74c3c;
-  color: #ffffff;
-  padding: 5px 10px;
-  border-radius: 5px;
-  font-size: 0.9rem;
+  top: var(--spacing-xs);
+  left: var(--spacing-xs);
+  background-color: var(--color-error);
+  color: var(--color-surface);
+  padding: var(--spacing-xxs) var(--spacing-xs);
+  border-radius: var(--border-radius-sm);
+  font-size: var(--font-size-sm);
   font-weight: bold;
   z-index: 1;
 }
@@ -65,7 +78,8 @@
   width: 100%;
   height: 200px;
   object-fit: cover;
-  transition: transform 0.3s ease;
+  transition: transform var(--transition-duration-base)
+    var(--transition-ease-in-out);
 }
 
 .productCard:hover .image {
@@ -73,85 +87,73 @@
 }
 
 .cardContent {
-  padding: 20px;
+  padding: var(--spacing-md);
   text-align: center;
 }
 
 .name {
-  font-size: 1.4rem;
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-xl);
   font-weight: 600;
-  color: #333;
-  margin: 20px 0 10px; /* Spațiu mai mare între titlu și descriere */
+  color: var(--color-text);
+  margin: var(--spacing-md) 0 var(--spacing-xs);
 }
 
 .productDescription {
-  font-size: 1rem;
-  color: #777;
-  margin-bottom: 15px; /* Spațiu între descriere și preț */
+  font-family: var(--font-family-secondary);
+  font-size: var(--font-size-base);
+  color: var(--color-text-light);
+  margin-bottom: var(--spacing-sm);
+  line-height: var(--line-height-base);
 }
 
 .price {
-  font-size: 1.2rem;
-  color: #27ae60;
+  font-size: var(--font-size-lg);
+  color: var(--color-success);
   font-weight: bold;
-  margin-bottom: 15px; /* Spațiu între preț și marginea cardului */
+  margin-bottom: var(--spacing-sm);
 }
 
 .buttonContainer {
-  margin-top: 40px;
+  margin-top: var(--spacing-lg);
 }
 
 .shopButton {
-  padding: 15px 30px;
-  font-size: 1rem;
-  background-color: #27ae60;
-  color: #ffffff;
+  padding: var(--spacing-sm) var(--spacing-md);
+  font-size: var(--font-size-base);
+  background-color: var(--color-success);
+  color: var(--color-surface);
   border: none;
-  border-radius: 5px;
+  border-radius: var(--border-radius-sm);
   text-decoration: none;
   font-weight: bold;
-  transition: background-color 0.3s ease;
+  transition: background-color var(--transition-duration-base);
 }
 
 .shopButton:hover {
-  background-color: #1e8449;
-}
-
-.title {
-  font-family: "Poppins", sans-serif;
-  font-size: 3.5rem;
-  font-weight: 700;
-  color: #222;
-  margin-bottom: 20px;
-  position: relative;
-}
-
-.title::after {
-  content: "";
-  width: 80px;
-  height: 4px;
-  background-color: #ff7e5f;
-  display: block;
-  margin: 10px auto 0;
-  border-radius: 2px;
+  background-color: var(--color-primary);
 }
 
 /* Responsive design */
 @media (max-width: 768px) {
   .title {
-    font-size: 2rem;
+    font-size: var(--font-size-3xl);
   }
+
   .description {
-    font-size: 1rem;
-    margin: 0 10px 20px;
+    font-size: var(--font-size-base);
+    margin: 0 var(--spacing-xs) var(--spacing-md);
   }
+
   .name {
-    font-size: 1.2rem;
+    font-size: var(--font-size-lg);
   }
+
   .productDescription {
-    font-size: 0.9rem;
+    font-size: var(--font-size-sm);
   }
+
   .price {
-    font-size: 1.1rem;
+    font-size: var(--font-size-base);
   }
 }
