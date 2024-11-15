@@ -1,6 +1,4 @@
-/* ===========================
-   Variabile Globale
-=========================== */
+/* Variabile Globale */
 :root {
   --background: #ffffff;
   --text: #000000;
@@ -47,96 +45,19 @@ body {
   text-decoration: none;
 }
 
-/* Navigation Links */
-.mainNav {
+/* Grupul din dreapta (form de căutare, iconițe, hamburger) */
+.rightGroup {
   display: flex;
   align-items: center;
 }
 
-.navLinks {
-  list-style: none;
-  display: flex;
-  gap: 20px;
-}
-
-.navLinks li {
-  position: relative;
-}
-
-.navLinks a {
-  color: var(--text);
-  text-decoration: none;
-  font-size: 1rem;
-  padding: 8px 12px;
-  transition: color 0.3s;
-}
-
-.navLinks a:hover,
-.activeLink {
-  color: var(--hover);
-}
-
-.dropdown {
-  position: relative;
-}
-
-.dropdownButton {
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: var(--text);
-  display: flex;
-  align-items: center;
-  font-size: 1rem;
-  padding: 8px 12px;
-  transition: color 0.3s;
-}
-
-.dropdownButton svg {
-  margin-left: 5px;
-}
-
-.dropdownMenu {
-  position: absolute;
-  top: calc(100% + 5px);
-  left: 0;
-  background: var(--background);
-  border: 1px solid var(--secondary);
-  border-radius: 4px;
-  box-shadow: var(--shadow-sm);
-  list-style: none;
-  padding: 8px 0;
-  margin: 0;
-  z-index: 100;
-  min-width: 200px;
-}
-
-.dropdownMenu li {
-  width: 100%;
-}
-
-.dropdownMenu a {
-  padding: 8px 20px;
-  text-align: left;
-  color: var(--text);
-  text-decoration: none;
-  display: block;
-  font-size: 0.9rem;
-  transition: background-color 0.3s, color 0.3s;
-}
-
-.dropdownMenu a:hover {
-  background: var(--secondary);
-  color: var(--hover);
-}
-
-/* Icons and User Menu */
 .iconGroup {
   display: flex;
   align-items: center;
   gap: 15px;
 }
 
+/* Icons and User Menu */
 .icon {
   font-size: 1.5rem;
   color: var(--iconColor);
@@ -207,6 +128,7 @@ body {
 .searchForm {
   display: flex;
   align-items: center;
+  margin-right: 20px;
 }
 
 .searchInput {
@@ -238,6 +160,95 @@ body {
   font-size: 1.5rem;
   color: var(--text);
   cursor: pointer;
+  display: none;
+}
+
+/* Navigation Links */
+.mainNav {
+  display: flex;
+  align-items: center;
+}
+
+.navLinks {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.navLinks li {
+  position: relative;
+}
+
+.navLinks a {
+  color: var(--text);
+  text-decoration: none;
+  font-size: 1rem;
+  padding: 8px 12px;
+  transition: color 0.3s;
+}
+
+.navLinks a:hover,
+.activeLink {
+  color: var(--hover);
+}
+
+/* Dropdown */
+.dropdown {
+  position: relative;
+}
+
+.dropdownButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+  padding: 8px 12px;
+  transition: color 0.3s;
+}
+
+.dropdownButton svg {
+  margin-left: 5px;
+}
+
+.dropdownMenu {
+  position: absolute;
+  top: calc(100% + 5px);
+  left: 0;
+  background: var(--background);
+  border: 1px solid var(--secondary);
+  border-radius: 4px;
+  box-shadow: var(--shadow-sm);
+  list-style: none;
+  padding: 8px 0;
+  margin: 0;
+  z-index: 100;
+  min-width: 200px;
+}
+
+.dropdownMenu li {
+  width: 100%;
+}
+
+.dropdownMenu a {
+  padding: 8px 20px;
+  text-align: left;
+  color: var(--text);
+  text-decoration: none;
+  display: block;
+  font-size: 0.9rem;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.dropdownMenu a:hover {
+  background: var(--secondary);
+  color: var(--hover);
+}
+
+/* Overlay */
+.overlay {
   display: none;
 }
 
@@ -281,47 +292,78 @@ body {
     display: block;
   }
 
-  .mainNav {
+  .searchForm {
     display: none;
   }
 
-  .mainNav.show {
-    display: block;
-    position: absolute;
-    top: 100%;
+  .mainNav {
+    position: fixed;
+    top: 0;
     left: 0;
+    width: 80%;
+    height: 100%;
     background: var(--background);
-    width: 100%;
-    padding: 10px 0;
-    border-top: 1px solid var(--secondary);
+    padding: 20px;
+    z-index: 999;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .mainNav.show {
+    transform: translateX(0);
+  }
+
+  .overlay {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 80%;
+    width: 20%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 998;
   }
 
   .navLinks {
     flex-direction: column;
     align-items: flex-start;
-    gap: 0;
+    gap: 10px;
+  }
+
+  .navLinks li {
+    width: 100%;
   }
 
   .navLinks a,
   .dropdownButton {
     width: 100%;
-    padding: 10px 20px;
+    padding: 10px 0;
+    font-size: 1.2rem;
   }
 
   .dropdownMenu {
-    position: static;
-    box-shadow: none;
-    border: none;
+    position: relative;
     padding-left: 20px;
+    background: none;
+    border: none;
+    box-shadow: none;
+  }
+
+  .dropdownMenu li a {
+    font-size: 1rem;
+    padding: 5px 0;
   }
 
   .iconGroup {
-    display: flex;
-    align-items: center;
+    gap: 10px;
   }
 
-  .searchForm {
-    display: none;
+  .icon {
+    font-size: 1.3rem;
+  }
+
+  .topNav {
+    padding: 10px 15px;
   }
 }
 
@@ -349,6 +391,6 @@ body {
   }
 
   .searchForm {
-    margin-left: 20px;
+    display: flex;
   }
 }

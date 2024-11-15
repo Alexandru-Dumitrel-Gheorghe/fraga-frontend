@@ -20,8 +20,8 @@
   justify-content: center;
 }
 
-/* Video Background */
-.videoBackground {
+/* Slideshow de imagini */
+.imageBackground {
   position: absolute;
   top: 0;
   left: 0;
@@ -115,7 +115,12 @@
 
 .shape {
   position: absolute;
-  /* Define positions, animations, etc. */
+  top: 10%;
+  left: 5%;
+  width: 100px;
+  height: 100px;
+  opacity: 0.5;
+  /* Poți adăuga animații sau alte stiluri aici */
 }
 
 /* Responsive Design */
@@ -136,6 +141,13 @@
   .icon {
     font-size: 1.5rem;
   }
+
+  .shape {
+    width: 80px;
+    height: 80px;
+    top: 15%;
+    left: 10%;
+  }
 }
 
 @media (max-width: 480px) {
@@ -154,5 +166,12 @@
 
   .icon {
     font-size: 1.2rem;
+  }
+
+  .shape {
+    width: 60px;
+    height: 60px;
+    top: 20%;
+    left: 15%;
   }
 }

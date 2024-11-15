@@ -1,23 +1,37 @@
 import React, { useState, useEffect } from "react";
 import styles from "./HeroSection.module.css";
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { FaArrowDown } from "react-icons/fa";
 
 const HeroSection = () => {
   const [sloganIndex, setSloganIndex] = useState(0);
+  const [imageIndex, setImageIndex] = useState(0);
   const slogans = [
     "Entdecken Sie die Eleganz unserer handgestrickten Kollektion.",
     "Verleihen Sie Ihrem Stil etwas Einzigartiges!",
     "Qualität und Stil in jedem Stich.",
   ];
+  const images = [
+    "https://images.unsplash.com/photo-1713256683892-5bab22f76be0?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "https://images.unsplash.com/photo-1700527221906-dd07b712ad16?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "https://images.unsplash.com/photo-1534452203293-494d7ddbf7e0?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  ];
 
   useEffect(() => {
-    const interval = setInterval(() => {
+    const sloganInterval = setInterval(() => {
       setSloganIndex((prevIndex) => (prevIndex + 1) % slogans.length);
-    }, 5000); // Schimbă la fiecare 5 secunde
-    return () => clearInterval(interval);
-  }, [slogans.length]);
+    }, 5000); // Schimbă sloganul la fiecare 5 secunde
+
+    const imageInterval = setInterval(() => {
+      setImageIndex((prevIndex) => (prevIndex + 1) % images.length);
+    }, 8000); // Schimbă imaginea la fiecare 8 secunde
+
+    return () => {
+      clearInterval(sloganInterval);
+      clearInterval(imageInterval);
+    };
+  }, [slogans.length, images.length]);
 
   const scrollToProducts = () => {
     const productsSection = document.getElementById("products");
@@ -28,14 +42,19 @@ const HeroSection = () => {
 
   return (
     <section className={styles.hero}>
-      {/* Video de fundal */}
-      <video
-        className={styles.videoBackground}
-        src="https://cdn.pixabay.com/video/2019/12/30/30703-383980330_large.mp4"
-        autoPlay
-        loop
-        muted
-      ></video>
+      {/* Slideshow de imagini */}
+      <AnimatePresence>
+        <motion.img
+          key={imageIndex}
+          src={images[imageIndex]}
+          alt={`Background ${imageIndex + 1}`}
+          className={styles.imageBackground}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 1 }}
+        />
+      </AnimatePresence>
 
       {/* Overlay pentru efect de întunecare */}
       <div className={styles.overlay}></div>
@@ -79,9 +98,23 @@ const HeroSection = () => {
 
       {/* Elemente decorative */}
       <div className={styles.decorativeShapes}>
-        {/* Exemplu de forme SVG sau alte elemente decorative */}
-        <svg className={styles.shape} /* ... */></svg>
-        {/* Adaugă mai multe elemente după preferință */}
+        {/* Exemplu de forme SVG */}
+        <svg
+          className={styles.shape}
+          width="100"
+          height="100"
+          viewBox="0 0 100 100"
+        >
+          <circle
+            cx="50"
+            cy="50"
+            r="40"
+            stroke="var(--accent-color)"
+            strokeWidth="3"
+            fill="none"
+          />
+        </svg>
+        {/* Poți adăuga mai multe forme SVG sau alte elemente decorative aici */}
       </div>
     </section>
   );
