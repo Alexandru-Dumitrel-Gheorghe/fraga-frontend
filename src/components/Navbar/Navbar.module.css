@@ -1,14 +1,13 @@
 /* Variabile Globale */
 :root {
   --background: #ffffff;
-  --text: #000000;
-  --primary: #000000;
-  --secondary: #eaeaea;
-  --hover: #333333;
-  --iconColor: #000000;
+  --text: #333333;
+  --primary: #ff5722;
+  --secondary: #f5f5f5;
+  --hover: #ff784e;
+  --iconColor: #333333;
   --navbarHeight: 70px;
   --fontFamily: "Montserrat", sans-serif;
-  --accent-color: #ff5722;
   --shadow-sm: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -46,18 +45,12 @@ body {
 }
 
 /* Grupul din dreapta (form de căutare, iconițe, hamburger) */
-.rightGroup {
-  display: flex;
-  align-items: center;
-}
-
 .iconGroup {
   display: flex;
   align-items: center;
   gap: 15px;
 }
 
-/* Icons and User Menu */
 .icon {
   font-size: 1.5rem;
   color: var(--iconColor);
@@ -65,6 +58,7 @@ body {
   position: relative;
 }
 
+/* User Menu */
 .userMenu {
   position: relative;
 }
@@ -84,7 +78,7 @@ body {
 }
 
 .userMenu:hover .userIcon {
-  color: var(--hover);
+  color: var(--primary);
 }
 
 .userDropdown {
@@ -121,7 +115,7 @@ body {
 .authLink:hover,
 .logoutButton:hover {
   background: var(--secondary);
-  color: var(--hover);
+  color: var(--primary);
 }
 
 /* Search Form */
@@ -142,7 +136,7 @@ body {
   padding: 6px 10px;
   border: 1px solid var(--secondary);
   border-left: none;
-  background: var(--hover);
+  background: var(--primary);
   color: #fff;
   border-radius: 0 4px 4px 0;
   cursor: pointer;
@@ -150,7 +144,17 @@ body {
 }
 
 .searchButton:hover {
-  background: #000;
+  background: var(--hover);
+}
+
+/* Butonul de căutare pe mobil */
+.searchToggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--text);
+  cursor: pointer;
 }
 
 /* Hamburger Menu Button */
@@ -189,7 +193,7 @@ body {
 
 .navLinks a:hover,
 .activeLink {
-  color: var(--hover);
+  color: var(--primary);
 }
 
 /* Dropdown */
@@ -211,6 +215,10 @@ body {
 
 .dropdownButton svg {
   margin-left: 5px;
+}
+
+.dropdownButton:hover {
+  color: var(--primary);
 }
 
 .dropdownMenu {
@@ -244,12 +252,79 @@ body {
 
 .dropdownMenu a:hover {
   background: var(--secondary);
-  color: var(--hover);
+  color: var(--primary);
 }
 
-/* Overlay */
-.overlay {
-  display: none;
+/* Mobile Navigation */
+.mobileNav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 80%;
+  height: 100%;
+  background: var(--background);
+  z-index: 999;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.mobileNavLinks {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.mobileNavLinks li {
+  margin-bottom: 15px;
+}
+
+.mobileNavLinks a {
+  color: var(--text);
+  text-decoration: none;
+  font-size: 1.2rem;
+  transition: color 0.3s;
+}
+
+.mobileNavLinks a:hover,
+.activeLink {
+  color: var(--primary);
+}
+
+.dropdownButtonMobile {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  width: 100%;
+  text-align: left;
+  padding: 0;
+}
+
+.dropdownButtonMobile svg {
+  margin-left: 10px;
+}
+
+.mobileDropdownMenu {
+  list-style: none;
+  padding-left: 20px;
+  overflow: hidden;
+}
+
+.mobileDropdownMenu li {
+  margin-bottom: 10px;
+}
+
+.mobileDropdownMenu a {
+  color: var(--text);
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.3s;
+}
+
+.mobileDropdownMenu a:hover {
+  color: var(--primary);
 }
 
 /* Mobile Search Form */
@@ -275,7 +350,7 @@ body {
   padding: 6px 10px;
   border: 1px solid var(--secondary);
   border-left: none;
-  background: var(--hover);
+  background: var(--primary);
   color: #fff;
   border-radius: 0 4px 4px 0;
   cursor: pointer;
@@ -283,12 +358,25 @@ body {
 }
 
 .searchButtonMobile:hover {
+  background: var(--hover);
+}
+
+/* Overlay */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   background: #000;
+  opacity: 0.5;
+  z-index: 998;
 }
 
 /* Responsive Design */
 @media (max-width: 1023px) {
-  .hamburger {
+  .hamburger,
+  .searchToggle {
     display: block;
   }
 
@@ -297,61 +385,7 @@ body {
   }
 
   .mainNav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 80%;
-    height: 100%;
-    background: var(--background);
-    padding: 20px;
-    z-index: 999;
-    transform: translateX(-100%);
-    transition: transform 0.3s ease-in-out;
-  }
-
-  .mainNav.show {
-    transform: translateX(0);
-  }
-
-  .overlay {
-    display: block;
-    position: fixed;
-    top: 0;
-    left: 80%;
-    width: 20%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 998;
-  }
-
-  .navLinks {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
-  }
-
-  .navLinks li {
-    width: 100%;
-  }
-
-  .navLinks a,
-  .dropdownButton {
-    width: 100%;
-    padding: 10px 0;
-    font-size: 1.2rem;
-  }
-
-  .dropdownMenu {
-    position: relative;
-    padding-left: 20px;
-    background: none;
-    border: none;
-    box-shadow: none;
-  }
-
-  .dropdownMenu li a {
-    font-size: 1rem;
-    padding: 5px 0;
+    display: none;
   }
 
   .iconGroup {
@@ -368,29 +402,13 @@ body {
 }
 
 @media (min-width: 1024px) {
-  .hamburger {
+  .mobileNav,
+  .mobileSearchContainer,
+  .overlay {
     display: none;
   }
 
-  .mainNav {
-    display: block;
-  }
-
-  .navLinks {
-    flex-direction: row;
-    align-items: center;
-  }
-
-  .navLinks a,
-  .dropdownButton {
-    padding: 8px 12px;
-  }
-
-  .iconGroup {
-    gap: 20px;
-  }
-
-  .searchForm {
-    display: flex;
+  .searchToggle {
+    display: none;
   }
 }

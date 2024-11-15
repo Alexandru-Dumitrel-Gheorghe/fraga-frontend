@@ -9,14 +9,14 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import { CartContext } from "../../context/CartContext";
 import {
-  FaShoppingCart,
-  FaHeart,
-  FaBars,
-  FaTimes,
-  FaUser,
-  FaSearch,
-  FaChevronDown,
-} from "react-icons/fa";
+  FiShoppingCart,
+  FiHeart,
+  FiMenu,
+  FiX,
+  FiUser,
+  FiSearch,
+  FiChevronDown,
+} from "react-icons/fi"; // Importăm iconițele din Feather Icons
 import { motion, AnimatePresence } from "framer-motion";
 import styles from "./Navbar.module.css";
 
@@ -108,13 +108,14 @@ const Navbar = () => {
               className={styles.dropdown}
               onMouseEnter={() => setCategoryOpen(true)}
               onMouseLeave={() => setCategoryOpen(false)}
+              onClick={() => setCategoryOpen(!categoryOpen)}
             >
               <button
                 className={styles.dropdownButton}
                 aria-haspopup="true"
                 aria-expanded={categoryOpen}
               >
-                Kategorien <FaChevronDown />
+                Kategorien <FiChevronDown />
               </button>
               <AnimatePresence>
                 {categoryOpen && (
@@ -198,6 +199,13 @@ const Navbar = () => {
         {/* Icons and User Dropdown Trigger */}
         <div className={styles.iconGroup}>
           {/* Buton pentru deschiderea căutării pe mobil */}
+          <button
+            className={styles.searchToggle}
+            onClick={() => setSearchOpen(!searchOpen)}
+            aria-label="Suche"
+          >
+            <FiSearch />
+          </button>
 
           {/* Search Form for Desktop */}
           <form className={styles.searchForm} onSubmit={handleSearchSubmit}>
@@ -214,15 +222,15 @@ const Navbar = () => {
               className={styles.searchButton}
               aria-label="Suchen"
             >
-              <FaSearch />
+              <FiSearch />
             </button>
           </form>
 
           <Link to="/wishlist" aria-label="Wunschliste">
-            <FaHeart className={styles.icon} />
+            <FiHeart className={styles.icon} />
           </Link>
           <Link to="/cart" aria-label="Warenkorb">
-            <FaShoppingCart className={styles.icon} />
+            <FiShoppingCart className={styles.icon} />
             {cartItems.length > 0 && (
               <span className={styles.cartCount}>{cartItems.length}</span>
             )}
@@ -240,7 +248,7 @@ const Navbar = () => {
               aria-expanded={dropdownOpen}
               aria-label="Benutzermenü"
             >
-              <FaUser className={styles.userIcon} />
+              <FiUser className={styles.userIcon} />
             </button>
             <AnimatePresence>
               {dropdownOpen && (
@@ -284,16 +292,16 @@ const Navbar = () => {
               )}
             </AnimatePresence>
           </div>
-        </div>
 
-        {/* Hamburger Menu Button for Mobile */}
-        <button
-          className={styles.hamburger}
-          onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="Menü"
-        >
-          {menuOpen ? <FaTimes /> : <FaBars />}
-        </button>
+          {/* Hamburger Menu Button for Mobile */}
+          <button
+            className={styles.hamburger}
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label="Menü"
+          >
+            {menuOpen ? <FiX /> : <FiMenu />}
+          </button>
+        </div>
       </div>
 
       {/* Search Form for Mobile */}
@@ -323,10 +331,151 @@ const Navbar = () => {
                 className={styles.searchButtonMobile}
                 aria-label="Suchen"
               >
-                <FaSearch />
+                <FiSearch />
               </button>
             </form>
           </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Mobile Navigation Menu */}
+      <AnimatePresence>
+        {menuOpen && (
+          <>
+            <motion.div
+              className={styles.overlay}
+              onClick={closeMenu}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 0.5 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+            />
+            <motion.div
+              className={styles.mobileNav}
+              initial={{ x: "-100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "-100%" }}
+              transition={{ duration: 0.3 }}
+            >
+              <ul className={styles.mobileNavLinks}>
+                <li>
+                  <Link
+                    to="/"
+                    className={isActive("/") ? styles.activeLink : ""}
+                    onClick={closeMenu}
+                  >
+                    Home
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/products"
+                    className={isActive("/products") ? styles.activeLink : ""}
+                    onClick={closeMenu}
+                  >
+                    Produkte
+                  </Link>
+                </li>
+                {user && (
+                  <li>
+                    <Link
+                      to="/orders"
+                      className={isActive("/orders") ? styles.activeLink : ""}
+                      onClick={closeMenu}
+                    >
+                      Bestellungen
+                    </Link>
+                  </li>
+                )}
+                {/* Dropdown Categorii pentru Mobil */}
+                <li>
+                  <button
+                    className={styles.dropdownButtonMobile}
+                    onClick={() => setCategoryOpen(!categoryOpen)}
+                  >
+                    Kategorien <FiChevronDown />
+                  </button>
+                  <AnimatePresence>
+                    {categoryOpen && (
+                      <motion.ul
+                        className={styles.mobileDropdownMenu}
+                        initial={{ height: 0 }}
+                        animate={{ height: "auto" }}
+                        exit={{ height: 0 }}
+                        transition={{ duration: 0.2 }}
+                      >
+                        <li>
+                          <Link
+                            to="/products/taschen"
+                            className={
+                              isActive("/products/taschen")
+                                ? styles.activeLink
+                                : ""
+                            }
+                            onClick={closeMenu}
+                          >
+                            Taschen
+                          </Link>
+                        </li>
+                        <li>
+                          <Link
+                            to="/products/handgefertigte-kleider"
+                            className={
+                              isActive("/products/handgefertigte-kleider")
+                                ? styles.activeLink
+                                : ""
+                            }
+                            onClick={closeMenu}
+                          >
+                            Handgefertigte Kleider
+                          </Link>
+                        </li>
+                        <li>
+                          <Link
+                            to="/products/pullover"
+                            className={
+                              isActive("/products/pullover")
+                                ? styles.activeLink
+                                : ""
+                            }
+                            onClick={closeMenu}
+                          >
+                            Pullover
+                          </Link>
+                        </li>
+                        <li>
+                          <Link
+                            to="/products/handgemacht-cardigans"
+                            className={
+                              isActive("/products/handgemacht-cardigans")
+                                ? styles.activeLink
+                                : ""
+                            }
+                            onClick={closeMenu}
+                          >
+                            Handgemachte Cardigans
+                          </Link>
+                        </li>
+                        <li>
+                          <Link
+                            to="/products/genaehte-kleider"
+                            className={
+                              isActive("/products/genaehte-kleider")
+                                ? styles.activeLink
+                                : ""
+                            }
+                            onClick={closeMenu}
+                          >
+                            Genähte Kleider
+                          </Link>
+                        </li>
+                      </motion.ul>
+                    )}
+                  </AnimatePresence>
+                </li>
+              </ul>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </nav>
