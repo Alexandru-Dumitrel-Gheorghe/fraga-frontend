@@ -1,5 +1,3 @@
-// src/App.jsx
-
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar";
@@ -12,6 +10,7 @@ import RegisterPage from "./pages/RegisterPage";
 import OrdersPage from "./pages/OrdersPage";
 import Checkout from "./components/Checkout/Checkout";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
+import Footer from "./components/Footer/Footer"; // Importă componenta Footer
 import "./styles/variables.css"; // Calea către fișierul CSS
 import { CategoryProvider } from "./context/CategoryContext";
 
@@ -49,6 +48,7 @@ const App = () => {
             />
           </Routes>
         </main>
+        <Footer /> {/* Adaugă componenta Footer */}
       </div>
     </CategoryProvider>
   );
